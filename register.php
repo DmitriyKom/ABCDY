@@ -85,7 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     //First Name:
     if(empty(trim($_POST["user_firstName"]))){
-        $user_firstName__err = "Please enter a First Name.";    
+        $user_firstName_err = "Please enter a First Name.";    
     } elseif(strlen(trim($_POST["user_firstName"])) <= 0){
         $user_firstName_err = "Please Enter First Name";
     } else{
@@ -94,7 +94,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     //Last Name:
     if(empty(trim($_POST["user_lastName"]))){
-        $user_lastName__err = "Please enter a Last Name.";    
+        $user_lastName_err = "Please enter a Last Name.";    
     } elseif(strlen(trim($_POST["user_lastName"])) <= 0){
         $user_lastName_err = "Please Enter Last Name";
     } else{
@@ -103,7 +103,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } 
     //Address:
     if(empty(trim($_POST["user_address"]))){
-        $user_address__err = "Please enter Address.";    
+        $user_address_err = "Please enter Address.";    
     } elseif(strlen(trim($_POST["user_address"])) <= 0){
         $user_address_err = "Please Enter Address";
     } else{
@@ -253,6 +253,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <title>Sign Up</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+
     <style type="text/css">
         body{ font: 14px sans-serif; }
         .wrapper{ width: 350px; padding: 20px; }
@@ -288,20 +289,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             
             <!-- START: Adding by Andrey:----########################################-->
-            <div class="form-group <?php echo (!empty($user_firstName__err)) ? 'has-error' : ''; ?>">
+            <div class="form-group <?php echo (!empty($user_firstName_err)) ? 'has-error' : ''; ?>">
                 <label>First Name</label>
                 <input type="text" name="user_firstName" class="form-control" value="<?php echo $user_firstName; ?>">
-                <span class="help-block"><?php echo $user_firstName__err; ?></span>
+                <span class="help-block"><?php echo $user_firstName_err; ?></span>
             </div>    
-            <div class="form-group <?php echo (!empty($user_lastName__err)) ? 'has-error' : ''; ?>">
+            <div class="form-group <?php echo (!empty($user_lastName_err)) ? 'has-error' : ''; ?>">
                 <label>Last Name</label>
                 <input type="text" name="user_lastName" class="form-control" value="<?php echo $user_lastName; ?>">
-                <span class="help-block"><?php echo $user_lastName__err; ?></span>
+                <span class="help-block"><?php echo $user_lastName_err; ?></span>
             </div> 
-   			<div class="form-group <?php echo (!empty($user_address__err)) ? 'has-error' : ''; ?>">
+   			<div class="form-group <?php echo (!empty($user_address_err)) ? 'has-error' : ''; ?>">
                 <label>Address</label>
                 <input type="text" name="user_address" class="form-control" value="<?php echo $user_address; ?>">
-                <span class="help-block"><?php echo $user_address__err; ?></span>
+                <span class="help-block"><?php echo $user_address_err; ?></span>
             </div>
             <div class="form-group <?php echo (!empty($user_city_err)) ? 'has-error' : ''; ?>">
                 <label>City</label>
