@@ -1,7 +1,7 @@
 <?php
 session_start();
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true  ||!isset($_SESSION["role"]) || $_SESSION["role"]!=="Manager"){
+    header("location: index.php");
     exit;
 }
 ?>
@@ -47,12 +47,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			</tr>
 			<td>Up Comming Training</td>
 			<td> <a href="">Click here to view the report</a> </td>
-
+			</tr>
+			<tr>
+			<td><label>Create New Training</label></td>
+			<td> <a href="./addNewTraining.php"  style="color:red;">Click here to start creation of new training</a> </td>
+			</tr>
 		</table>
     </div>
     <p>
 
-        <a href="index.php" class="btn btn-danger">Sign Out of Your Account</a>
+        <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
     </p>
 </body>
 </html>
