@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true  ||!isset($_SESSION["role"]) || $_SESSION["role"]!=="HR"){
     header("location: index.php");
     exit;
 }
@@ -34,7 +34,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </head>
 <body>
     <div class="page-header">
-        <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to the HR Page.</h1>
+        <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to the HR Page	.</h1>
 		<br><br>
 		<table align="center">
 		  <tr>
@@ -47,16 +47,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			</tr>
 			<td>Up Comming Training</td>
 			<td> <a href="">Click here to view the report</a> </td>
-			</tr>
-			<tr>
-			<td>Create New Training</td>
-			<td> <a href="./addNewTraining.php"  style="color:red;">Click here to start creation of new training</a> </td>
-			</tr>
+
 		</table>
     </div>
     <p>
 
-        <a href="sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
+        <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
     </p>
 </body>
 </html>
