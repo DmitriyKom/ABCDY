@@ -6,8 +6,8 @@ define('DB_SERVER', 'localhost');
 define('DB_PASSWORD', '');
 define('DB_NAME', 'demo');*/
  
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'K81pre33M.R');
+define('DB_USERNAME', 'user');
+define('DB_PASSWORD', '');
 define('DB_NAME', 'ics499_abcdy_group'); 
  
  
