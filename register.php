@@ -1,5 +1,5 @@
 <?php
-require_once "config.php";
+require_once "./includes/open_conn.inc";
 $username = "";
 $password = "";
 $confirm_password = "";
