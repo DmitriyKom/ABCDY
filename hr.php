@@ -1,8 +1,5 @@
 <?php
-// Initialize the session
 session_start();
- 
-// Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: index.php");
     exit;
@@ -37,24 +34,29 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 </head>
 <body>
     <div class="page-header">
-        <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to the training site.</h1>
+        <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to the HR Page.</h1>
 		<br><br>
 		<table align="center">
 		  <tr>
-			<th>Training Completed?</th>
-			<th>Training Course</th>
+			<th>Report Name</th>
 			<th>Link To Training</th>
 		  </tr>
 		  <tr>
-			<td>No</td>
-			<td>ForkLift Traning 101</td>
-			<td> <a href="ForkLift.php">Click here to view your training</a> </td>
-
+			<td>Employees Training Past Due</td>
+			<td> <a href="">Click here to view the report</a> </td>
+			</tr>
+			<td>Up Comming Training</td>
+			<td> <a href="">Click here to view the report</a> </td>
+			</tr>
+			<tr>
+			<td>Create New Training</td>
+			<td> <a href="./addNewTraining.php"  style="color:red;">Click here to start creation of new training</a> </td>
+			</tr>
 		</table>
     </div>
     <p>
 
-        <a href="index.php" class="btn btn-danger">Sign Out of Your Account</a>
+        <a href="sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
     </p>
 </body>
 </html>
