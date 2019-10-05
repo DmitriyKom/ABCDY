@@ -1,7 +1,7 @@
 <?php
 session_start();
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"]!=="Manager"){
+    header("location: index.php");
     exit;
 }
 
@@ -15,6 +15,10 @@ $training_document="";
 $training_document_err="";
 $training_text="";
 $training_text_err="";
+
+	function () {
+		
+	}
 
 ?>
  
@@ -46,7 +50,7 @@ $training_text_err="";
 		}
     </style>
 </head>
-<body onload="createTable()">
+<body>
     <div class="page-header">
         <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> please Fill all fields for Adding New Training.</h1>
 		<br><br>
@@ -78,9 +82,13 @@ $training_text_err="";
 	            </div> 
 					</td>
 					<td>
-						<button onclick="addLinkInputBox();">add more video links</button>
+						<button onclick="addLinkInputBox(); return false;">add more video links</button>
 					</td>	
 				</tr>
+				<div id="add_video_links">
+				
+				
+				</div>
 				
 				<tr>
 					<td><label>Training Document Link:</label> </td>
@@ -135,7 +143,7 @@ $training_text_err="";
     </div>
     <p>
 
-        <a href="sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
+        <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
     </p>
     
     
