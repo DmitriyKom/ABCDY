@@ -7,7 +7,7 @@ define('DB_PASSWORD', '');
 define('DB_NAME', 'demo');*/
  
 define('DB_USERNAME', 'user');
-define('DB_PASSWORD', 'K81pre33MU');
+define('DB_PASSWORD', '');
 define('DB_NAME', 'ics499_abcdy_group'); 
  
  
