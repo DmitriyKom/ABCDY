@@ -45,9 +45,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true  ||!isset($_S
 			<td>Employees Training Past Due</td>
 			<td> <a href="">Click here to view the report</a> </td>
 			</tr>
+			<tr>
 			<td>Up Comming Training</td>
 			<td> <a href="">Click here to view the report</a> </td>
-
+			</tr>
+			
+			<tr>
+			<td><label>Add New User Into System</label></td>
+			<td> <a href="./register.php"  style="color:red;">Click here to add New User into System.</a> </td>
+			</tr>			
+			
 		</table>
     </div>
     <p>

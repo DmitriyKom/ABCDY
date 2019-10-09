@@ -9,4 +9,9 @@ function addLinkInputBox() {
 
 }
 
+function goBack(){
+	
+
+}
+
 

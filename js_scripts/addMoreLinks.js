@@ -9,4 +9,9 @@ function addLinkInputBox() {
 
 }
 
+function goBack(){
+	header("location:javascript://history.go(-1)");
+
+}
+
 
