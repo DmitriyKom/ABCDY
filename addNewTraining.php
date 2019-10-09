@@ -1,5 +1,6 @@
 <?php
-session_start();
+session_start();//session is starting 
+//checking if loggedin session is set, and role is Manager, if not rederecting to main page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"]!=="Manager"){
     header("location: index.php");
     exit;
@@ -16,9 +17,7 @@ $training_document_err="";
 $training_text="";
 $training_text_err="";
 
-	function () {
-		
-	}
+
 
 ?>
  
@@ -131,8 +130,9 @@ $training_text_err="";
 			</table>
 			
 			<div class="form-group">
+				<a href="./manager.php" type="reset" class="btn btn-default" value="Back">Back</a>
              <input type="submit" class="btn btn-primary" value="Submit">
-             <input type="reset" class="btn btn-default" value="Reset">
+             <input type="reset" class="btn btn-default" value="Reset" style="color: red;">
          </div>
 		</form>
     
