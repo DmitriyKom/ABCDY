@@ -51,6 +51,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_S
 					<th>Role</th>
 					<th>Enabled</th>
 					<th>Edit</th>
+					<th>Disable Account</th>
 				  </tr>
 				  
 			`			<?php 
@@ -65,7 +66,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_S
 										$web_string.="<td>$row[userName]</td>";
 										$web_string.="<td>$row[role]</td>";
 										$web_string.="<td>$row[enabled]</td>";
-										$web_string.='<td><a href="./php_scripts/editAccount.php" class="btn btn-danger" id="'.$row[id].'">Edit</a></td>';					
+										$web_string.='<td><a href="./php_scripts/editAccount.php" class="btn btn-danger" id="'.$row[id].'">Edit</a></td>';
+										$_disable="";
+										if($row[enabled]==1){
+											$_disable = "Disable";
+										}else{
+											$_disable = "Enable";
+										}	
+										$web_string.='<td><a href="./php_scripts/disableAccount.php" class="btn btn-danger" id="'.$row[id].'">'.$_disable .' Acct</a></td>';					
 										$web_string.="</tr>";
 										echo $web_string;
 					
