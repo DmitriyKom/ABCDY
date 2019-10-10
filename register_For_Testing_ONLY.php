@@ -269,11 +269,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
                 <span class="help-block"><?php echo $username_err; ?></span>
             </div>    
-			<div class="form-group <?php echo (!empty($role_err)) ? 'has-error' : ''; ?>">
+				<div class="form-group <?php echo (!empty($role_err)) ? 'has-error' : ''; ?>">
                 <label>Role</label>
-                <input type="text" name="role" class="form-control" value="<?php echo $role; ?>">
-                <span class="help-block"><?php echo $role_err; ?></span>
+                <select name="role" size="1" style="margin-left: 20px;">
+  						<option value="HR">HR</option>
+  						<option value="Manager">Manager</option>
+  						<option value="Trainee">Trainee</option>
+					</select>
             </div>
+            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                 <label>Password</label>
                 <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
