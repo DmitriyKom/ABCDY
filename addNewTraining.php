@@ -130,7 +130,7 @@ $training_text_err="";
 			</table>
 			
 			<div class="form-group">
-				<a href="./manager.php" type="reset" class="btn btn-default" value="Back">Back</a>
+				 <a href="./manager.php" type="reset" class="btn btn-default" value="Back">Back</a>
              <input type="submit" class="btn btn-primary" value="Submit">
              <input type="reset" class="btn btn-default" value="Reset" style="color: red;">
          </div>

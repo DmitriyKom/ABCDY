@@ -1,11 +1,12 @@
 <?php
-session_start();//session is starting 
-//checking if loggedin session is set, and role is Manager, if not rederecting to main page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"]!=="HR"){
-    header("location: index.php");
-    exit;
-}
+	session_start();//session is starting 
+	//checking if loggedin session is set, and role is Manager, if not rederecting to main page
+	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"]!=="HR"){
+	    header("location: index.php");
+	    exit;
+	}
 
+		
 ?>
  
 <!DOCTYPE html>
@@ -14,7 +15,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_S
 	
 		<script type="text/javascript" src="./js_scripts/addMoreLinks.js"></script>
 	    <meta charset="UTF-8">
-	    <title>Add New Training</title>
+	    <title>Handle Users</title>
 	    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">-->
 		 <link rel="stylesheet" href="./design/bootstrap.css">
 	    <style type="text/css">
@@ -42,21 +43,24 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_S
 			<br><br>
 		<div>
 			
-			<form action="./editUser.php" method="post">
+			<form action="./php_scripts/handleAccnt.php" method="get">
 			
 				<table align="center">
 				  <tr>
 					<th>ID</th>
 					<th>Login</th>
 					<th>Role</th>
-					<th>Enabled</th>
+					<th>Created On</th>
+					<th>Status</th>
 					<th>Edit</th>
-					<th>Disable Account</th>
+					<th>Disable/Enable Account</th>
 				  </tr>
 				  
 			`			<?php 
+			
+			
 							include_once("./includes/open_conn.inc"); //opening connection to db
-							$web_string="";
+							$web_string="";  // variable to write on the web page
 				  			$select_query = "SELECT id, userName, role, enabled, created_at from users";
 				  			if ($res = mysqli_query($link, $select_query)) { 
 			 					if (mysqli_num_rows($res) > 0) { 
@@ -65,17 +69,19 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_S
 				         			$web_string.="<td>$row[id]</td>";
 										$web_string.="<td>$row[userName]</td>";
 										$web_string.="<td>$row[role]</td>";
-										$web_string.="<td>$row[enabled]</td>";
-										$web_string.='<td><a href="./php_scripts/editAccount.php" class="btn btn-danger" id="'.$row[id].'">Edit</a></td>';
+										$web_string.="<td>$row[created_at]</td>";
+										$web_string.="<td>".($row[enabled]==1 ? "Enabled": "Disabled")."</td>";
+										$web_string.='<td><a href="./editAccount.php?id='.$row[id].'" class="btn btn-danger">Edit</a></td>';
+										
 										$_disable="";
-										if($row[enabled]==1){
-											$_disable = "Disable";
-										}else{
-											$_disable = "Enable";
-										}	
-										$web_string.='<td><a href="./php_scripts/disableAccount.php" class="btn btn-danger" id="'.$row[id].'">'.$_disable .' Acct</a></td>';					
+									
+										$user_id = $row[id];
+										$_disable = ($row[enabled]==0 ? "Enable" : "Disable"); // checking if account is Disabled or Not and assign String value to variable
+										
+										$web_string.='<td><input type="submit" class="btn btn-danger" name="'.$row[id].'" value="'.$_disable .'" /></td>';					
 										$web_string.="</tr>";
-										echo $web_string;
+										echo $web_string; // printing to the web page.
+
 					
 			     					} 
 			     					mysqli_free_result($res);
@@ -84,7 +90,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_S
 			 					} 
 							} else { 
     							echo "ERROR: Could not able to execute $sql. "
-                                .mysqli_error($link); 
+                                .mysqli_error($link); https://www.w3schools.com/
          					return false;
 							};
 				  		

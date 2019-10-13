@@ -271,7 +271,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>    
 				<div class="form-group <?php echo (!empty($role_err)) ? 'has-error' : ''; ?>">
                 <label>Role</label>
-                <select name="role" size="1" style="margin-left: 20px;">
+                <select class="form-control" name="role" size="1">
   						<option value="HR">HR</option>
   						<option value="Manager">Manager</option>
   						<option value="Trainee">Trainee</option>
