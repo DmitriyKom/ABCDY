@@ -1,18 +1,13 @@
 <?php
-	session_start();
-	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true  ||!isset($_SESSION["role"]) || $_SESSION["role"]!=="HR"){
-	    header("location: index.php");
-	    exit;
-	}
-	require_once "./includes/open_conn.inc";
-	$username = "";
-	$password = "";
-	$confirm_password = "";
-	$role = "";
-	$username_err = "";
-	$password_err = "";
-	$confirm_password_err = "";
-	$role_err = "";
+require_once "./includes/open_conn.inc";
+$username = "";
+$password = "";
+$confirm_password = "";
+$role = "";
+$username_err = "";
+$password_err = "";
+$confirm_password_err = "";
+$role_err = "";
 
 //<!-- START: Adding by Andrey:----########################################-->
  $user_lastName = "";
@@ -276,12 +271,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>    
 				<div class="form-group <?php echo (!empty($role_err)) ? 'has-error' : ''; ?>">
                 <label>Role</label>
-                <select name="role" size="1" style="margin-left: 20px;">
+                <select class="form-control" name="role" size="1">
   						<option value="HR">HR</option>
   						<option value="Manager">Manager</option>
   						<option value="Trainee">Trainee</option>
 					</select>
             </div>
+            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                 <label>Password</label>
                 <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
@@ -341,11 +337,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             
             <div class="form-group">
-					<a href="./hr.php" type="reset" class="btn btn-default" value="Back">Back</a>
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-default" value="Reset">
             </div>
-            <p>To Login page: <a href="./index.php">Login Page</a>.</p>
+            <p>Already have an account? <a href="index.php">Login here</a>.</p>
         </form>
     </div>    
 </body>
