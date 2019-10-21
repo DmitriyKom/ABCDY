@@ -57,7 +57,10 @@
 				  </tr>
 				  
 			`			<?php 
-			
+							$id='';
+							$user_name = '';
+							$role = '';
+							
 			
 							include_once("./includes/open_conn.inc"); //opening connection to db
 							$web_string="";  // variable to write on the web page
@@ -70,15 +73,15 @@
 										$web_string.="<td>$row[userName]</td>";
 										$web_string.="<td>$row[role]</td>";
 										$web_string.="<td>$row[created_at]</td>";
-										$web_string.="<td>".($row[enabled]==1 ? "Enabled": "Disabled")."</td>";
-										$web_string.='<td><a href="./editAccount.php?id='.$row[id].'" class="btn btn-danger">Edit</a></td>';
+										$web_string.="<td>".($row['enabled']==1 ? "Enabled": "Disabled")."</td>";
+										$web_string.='<td><a href="./editAccount.php?id='.$row['id'].'" class="btn btn-danger">Edit</a></td>';
 										
 										$_disable="";
 									
-										$user_id = $row[id];
-										$_disable = ($row[enabled]==0 ? "Enable" : "Disable"); // checking if account is Disabled or Not and assign String value to variable
+										$user_id = $row['id'];
+										$_disable = ($row['enabled']==0 ? "Enable" : "Disable"); // checking if account is Disabled or Not and assign String value to variable
 										
-										$web_string.='<td><input type="submit" class="btn btn-danger" name="'.$row[id].'" value="'.$_disable .'" /></td>';					
+										$web_string.='<td><input type="submit" class="btn btn-danger" name="'.$row['id'].'" value="'.$_disable .'" /></td>';					
 										$web_string.="</tr>";
 										echo $web_string; // printing to the web page.
 
