@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS Demo;
+DROP DATABASE IF EXISTS demo;
 
-Create DATABASE Demo;
+Create DATABASE demo;
 --
 -- Table structure for table `users`
 --
