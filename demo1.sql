@@ -12,7 +12,7 @@ CREATE TABLE users (
   role varchar(15) DEFAULT NULL,
   last_login datetime DEFAULT current_timestamp(),
   created_dt datetime DEFAULT current_timestamp(),
-  enabled int NOT NULL
+  enabled bit(1) NOT NULL DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO users (user_id, username, password, role, last_login,created_dt, enabled) VALUES
