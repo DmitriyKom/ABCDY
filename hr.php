@@ -1,4 +1,11 @@
 <?php
+
+/* Date         Name            Changes
+ * 10/27/2019   Andrey          Coding page
+ *
+ *
+ *
+ */
 session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true  ||!isset($_SESSION["role"]) || $_SESSION["role"]!=="HR"){
     header("location: index.php");
@@ -49,7 +56,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true  ||!isset($_S
 			<td>Up Comming Training</td>
 			<td> <a href="">Click here to view the report</a> </td>
 			</tr>
-			
 			<tr>
 			<td><label>Add New User Into System</label></td>
 			<td> <a href="./register.php"  style="color:red;">Click here to add New User into System.</a> </td>
@@ -62,7 +68,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true  ||!isset($_S
 		</table>
     </div>
     <p>
-
         <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
     </p>
 </body>
