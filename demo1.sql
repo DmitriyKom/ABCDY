@@ -1,4 +1,4 @@
-DROP DATABASE Demo;
+DROP DATABASE IF EXISTS Demo;
 
 Create DATABASE Demo;
 --
