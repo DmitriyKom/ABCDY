@@ -59,7 +59,7 @@ $training_text_err = "";
     </h1>
     <br><br>
     <div>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <form action="./php_scripts/addTrainingToDB.php" method="post">
             <table align="center">
                 <tr>
                     <th>1</th>
