@@ -13,6 +13,7 @@ $password = "";
 $role = "";
 $username_err = "";
 $password_err = "";
+$enabled = b'0';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter username.";
@@ -25,33 +26,39 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $password = trim($_POST["password"]);
     }
     if(empty($username_err) && empty($password_err)){
-        $sql = "SELECT user_id, username, password, role FROM users WHERE username = ?";
+        $sql = "SELECT id, username, password, role, enabled FROM users WHERE username = ?";
         if($stmt = mysqli_prepare($link, $sql)){
             mysqli_stmt_bind_param($stmt, "s", $param_username);
             $param_username = $username;
             if(mysqli_stmt_execute($stmt)){
                 mysqli_stmt_store_result($stmt);
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
-                    mysqli_stmt_bind_result($stmt, $user_id, $username, $hashed_password, $role);
+                    mysqli_stmt_bind_result($stmt, $user_id, $username, $hashed_password, $role,$enabled);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
-                            session_start();
-                            $_SESSION["loggedin"] = true;
-                            $_SESSION["user_id"] = $user_id;
-                            $_SESSION["username"] = $username;    
-							$_SESSION["role"] = $role; 	
-							switch($role){
-								case "HR":
-									header("location: hr.php");
-									break;
-								case "Trainee":
-									header("location: welcome.php");
-									break;
-								case "Manager":
-									header("location: manager.php");
-									break;
-								default:
-								header("location: welcome.php");}
+                        	if($enabled==b'1'){ // checking if users account is not disabled
+                        	
+	                            session_start();
+	                            $_SESSION["loggedin"] = true;
+	                            $_SESSION["user_id"] = $user_id;
+	                            $_SESSION["username"] = $username;    
+										 $_SESSION["role"] = $role; 	
+										switch($role){
+											case "HR":
+												header("location: hr.php");
+												break;
+											case "Trainee":
+												header("location: welcome.php");
+												break;
+											case "Manager":
+												header("location: manager.php");
+												break;
+											default:
+												header("location: welcome.php");
+												break;
+										}
+									}
+									
 							} else{
 								$password_err = "The password you entered was not valid.";
 						}

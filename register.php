@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty(trim($_POST["username"]))) {
         $username_err = "Please enter a username.";
     } else {
-        $sql = "SELECT user_id FROM users WHERE username = ?";
+        $sql = "SELECT id FROM users WHERE username = ?";
         
         if ($stmt = mysqli_prepare($link, $sql)) {
             mysqli_stmt_bind_param($stmt, "s", $param_username);
@@ -55,8 +55,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 echo "Something went wrong. Please try again later.";
             }
+            mysqli_stmt_close($stmt);
         }
-        mysqli_stmt_close($stmt);
+        
     }
     if (empty(trim($_POST["password"]))) {
         $password_err = "Please enter a password.";
@@ -148,11 +149,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     function addUsers_Info($link, $user_id, $username, $user_lastName, $user_firstName, $user_address, $user_city, $user_zip, $user_state, $user_email)
     {
         
-        $select_query = 'SELECT user_id FROM users WHERE username = "' . $username . '"';
+        $select_query = 'SELECT id FROM users WHERE username = "' . $username . '"';
         if ($res = mysqli_query($link, $select_query)) {
             if (mysqli_num_rows($res) > 0) {
                 while ($row = mysqli_fetch_array($res)) {
-                    $user_id = $row['user_id'];
+                    $user_id = $row['id'];
                 }
                 mysqli_free_result($res);
             } else {
@@ -328,7 +329,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="submit" class="btn btn-primary" value="Submit">
             <input type="reset" class="btn btn-default" value="Reset">
         </div>
-        <p>To Login page: <a href="./index.php">Login Page</a>.</p>
+      
     </form>
 </div>
 </body>

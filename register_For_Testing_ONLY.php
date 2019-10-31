@@ -35,11 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty(trim($_POST["username"]))) {
         $username_err = "Please enter a username.";
     } else {
-        $sql = "SELECT user_id FROM users WHERE username = ?";
+        $sql = "SELECT id FROM users WHERE username = ?";
         
         if ($stmt = mysqli_prepare($link, $sql)) {
             mysqli_stmt_bind_param($stmt, "s", $param_username);
-            $param_username = trim($_GET["username"]);
+            $param_username = trim($_POST["username"]);
             if (mysqli_stmt_execute($stmt)) {
                 mysqli_stmt_store_result($stmt);
                 if (mysqli_stmt_num_rows($stmt) == 1) {
@@ -138,11 +138,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //this function is to adding users info into user_info table
     function addUsers_Info($link, $user_id, $username, $user_lastName, $user_firstName, $user_address, $user_city, $user_zip, $user_state, $user_email)
     {
-        $select_query = 'SELECT user_id FROM users WHERE username = "' . $username . '"';
+        $select_query = 'SELECT id FROM users WHERE username = "' . $username . '"';
         if ($res = mysqli_query($link, $select_query)) {
             if (mysqli_num_rows($res) > 0) {
                 while ($row = mysqli_fetch_array($res)) {
-                    $user_id = $row['user_id'];
+                    $user_id = $row['id'];
                 }
                 mysqli_free_result($res);
             } else {
