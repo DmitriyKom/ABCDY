@@ -13,6 +13,16 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_
     header("location: index.php");
     exit;
 }
+
+function getUserName($link, $u_id){
+	$select_query = "SELECT username from users where id =" .$u_id;
+	if ($result = mysqli_query($link, $select_query)) {
+		while ($row = mysqli_fetch_array($result)) {
+			return $row['username'];
+		}
+	}
+	return null;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,7 +83,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_
                             $web_string .= "<td>".$row['training_id']."</td>";
                             $web_string .= "<td>".$row['training_title']."</td>";
                             $web_string .= "<td>".$row['create_dt']."</td>";
-                            $web_string .= "<td>".$row['created_by']."</td>";
+                            $web_string .= "<td>".getUserName($link, $row['created_by'])."</td>";
                    
                             echo $web_string; // printing to the web page.
                         }
