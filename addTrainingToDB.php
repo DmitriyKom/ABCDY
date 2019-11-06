@@ -60,7 +60,7 @@
 	   	
 	   
 	   	if($training_text!=""){
-	   		$insert_training_query = "INSERT INTO training_document (training_id, training_doc_text) values (" .mysqli_real_escape_string($training_id).",'".mysqli_real_escape_string($link,$training_text)."')";
+	   		$insert_training_query = "INSERT INTO training_document (training_id, training_doc_text) values (" .mysqli_real_escape_string($link,$training_id).",'".mysqli_real_escape_string($link,$training_text)."')";
 	   		//echo $insert_training_query;
 	   		if (mysqli_query($link, $insert_training_query)) {
 		    
