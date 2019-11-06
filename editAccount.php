@@ -25,6 +25,14 @@ $email = "";
 $role = "";
 $user_name = "";
 
+$user_firstName_err ="";
+$user_lastName_err ="";
+$user_address_err ="";
+$user_city_err ="";
+$user_zip_err ="";
+$user_state_err ="";
+$user_email_err ="";
+
 
 if ($_GET) {
     
