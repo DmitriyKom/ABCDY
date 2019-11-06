@@ -31,13 +31,14 @@ if ($_GET) {
             }
         }
 		  $write_to_page.= "<h3>Training Links:</h3>";
-		  $write_to_page.='<table align="center">
+		  
+                    
+        if (mysqli_num_rows($result2) > 0) {
+        		$write_to_page.='<table align="center">
                 <tr>
                     <th></th>
                     <th>Link</th>
                 </tr>';
-                    
-        if (mysqli_num_rows($result2) > 0) {
             while ($row2 = mysqli_fetch_array($result2)) {
             	
             	$write_to_page.="<tr>";
@@ -52,10 +53,11 @@ if ($_GET) {
 						$write_to_page.='<td><a href="'.htmlspecialchars($row2['training_link']).'">'.htmlspecialchars($row2['training_link']).'</a></td>';
 					}          
             }
+            $write_to_page.='</table>';
         }else{
 				$write_to_page.="NONE";        
         }
-        $write_to_page.='</table>';
+        
         
         
 		  $write_to_page.= "<h3>Training Text:</h3>";        
