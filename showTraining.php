@@ -31,17 +31,44 @@ if ($_GET) {
             }
         }
 		  $write_to_page.= "<h3>Training Links:</h3>";
+		  $write_to_page.='<table align="center">
+                <tr>
+                    <th></th>
+                    <th>Link</th>
+                </tr>';
+                    
         if (mysqli_num_rows($result2) > 0) {
             while ($row2 = mysqli_fetch_array($result2)) {
-            	if($row2['training_link_type']=="EL"){
-						$write_to_page.='<a href="./training_documents/'.htmlspecialchars($row2['training_link']).'">'.htmlspecialchars($row2['training_link']).'</a><br />';
-					}else{
-						$write_to_page.='<a href="'.htmlspecialchars($row2['training_link']).'">'.htmlspecialchars($row2['training_link']).'</a><br />';
-					}           
+            	
+            	$write_to_page.="<tr>";
+            	if($row2['training_link_type']=="EL"){ /// checking if this is internal link
+            		$write_to_page.="<td>Local File</td>";
+						$write_to_page.='<td><a href="./training_documents/'.htmlspecialchars($row2['training_link']).'">'.htmlspecialchars($row2['training_link']).'</a></td>';
+					}else if($row2['training_link_type']=="YV"){
+						$write_to_page.="<td>Youtube Video:</td>";
+						$write_to_page.='<td><a href="'.htmlspecialchars($row2['training_link']).'">'.htmlspecialchars($row2['training_link']).'</a></td>';
+					} else if($row2['training_link_type']=="IL"){
+						$write_to_page.="<td>External Link</td>";
+						$write_to_page.='<td><a href="'.htmlspecialchars($row2['training_link']).'">'.htmlspecialchars($row2['training_link']).'</a></td>';
+					}          
             }
         }else{
 				$write_to_page.="NONE";        
         }
+        $write_to_page.='</table>';
+        
+        
+		  $write_to_page.= "<h3>Training Text:</h3>";        
+        if (mysqli_num_rows($result3) > 0) {
+            while ($row3 = mysqli_fetch_array($result3)) {
+            	
+            $write_to_page.='<textarea rows="20" cols="100" name="training_text">'.$row3['training_doc_text'].'</textarea><br />';
+					          
+            }
+        }else{
+				$write_to_page.="NONE";        
+        }
+        
     } else {
         echo "ERROR: Could not able to execute sql. "
             . mysqli_error($link);
