@@ -36,7 +36,7 @@ if ($_GET) {
         if (mysqli_num_rows($result2) > 0) {
         		$write_to_page.='<table align="center">
                 <tr>
-                    <th></th>
+                    <th>Link Type</th>
                     <th>Link</th>
                 </tr>';
             while ($row2 = mysqli_fetch_array($result2)) {
