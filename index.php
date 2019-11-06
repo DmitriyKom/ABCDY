@@ -37,12 +37,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
                         	if($enabled==b'1'){ // checking if users account is not disabled
-                        	
-	                            session_start();
-	                            $_SESSION["loggedin"] = true;
-	                            $_SESSION["user_id"] = $user_id;
-	                            $_SESSION["username"] = $username;    
-										 $_SESSION["role"] = $role; 	
+                        		changeLastLogInTime($user_id, $link);
+	                           session_start();
+	                           $_SESSION["loggedin"] = true;
+	                           $_SESSION["user_id"] = $user_id;
+	                           $_SESSION["username"] = $username;    
+										$_SESSION["role"] = $role; 	
 										switch($role){
 											case "HR":
 												header("location: hr.php");
@@ -74,6 +74,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     mysqli_close($link);
 }
+
+	function changeLastLogInTime($u_id, $link){
+		$update_query = "UPDATE users SET last_login=CURRENT_TIMESTAMP WHERE id=".$u_id."";
+		mysqli_query($link, $update_query);
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
