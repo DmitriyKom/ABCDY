@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	//print_r($_POST);
+	print_r($_POST);
 	//echo "*************************<br />";
 	//print_r($_SESSION);
 	//print_r($_FILES);
@@ -30,7 +30,7 @@
 	if(isset($_POST['training_text'])){
 		$training_text = sanitizeString($_POST['training_text']);
 	}
-	if(isset($_FILES['file_training_document']['name'])){
+	if(isset($_FILES['file_training_document']['name']) && $_FILES['file_training_document']['name']!=""){
 		$training_local_file_name  = sanitizeString($_FILES['file_training_document']['name']);
 	}
 	
@@ -50,7 +50,6 @@
 	      
 	   }
 	   if($training_id!=-1){//if training was added successfully and training_id was returned.
-	   
 	   	$training_directory_name = createDirectory($training_id); // this is craated new directory for training and return path to it
 	   	
 	   	$training_local_file_link = $training_directory_name."/".$training_local_file_name; // link to file on server 
@@ -59,7 +58,7 @@
 	   	move_uploaded_file($_FILES['file_training_document']['tmp_name'], "./../training_documents/".$training_local_file_link ); //upload file to server
 	   	
 	   
-	   	if($training_text!=""){
+	   	if(trim($training_text)!=""){
 	   		$insert_training_query = "INSERT INTO training_document (training_id, training_doc_text) values (" .mysqli_real_escape_string($link,$training_id).",'".mysqli_real_escape_string($link,$training_text)."')";
 	   		//echo $insert_training_query;
 	   		if (mysqli_query($link, $insert_training_query)) {
@@ -90,7 +89,7 @@
 	      
 	   		}
 	   	}
-	   	if($training_local_file_link!=""){
+	   	if($training_local_file_name!="" && $training_local_file_link!=""){
 				  $insert_training_query = "INSERT INTO training_link (training_id, training_link, training_link_type) values (" .$training_id.",'".mysqli_real_escape_string($link,$training_local_file_link)."', 'EL')"; 	
 	   		  if (mysqli_query($link, $insert_training_query)) {
 		    
