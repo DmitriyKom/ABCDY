@@ -59,6 +59,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_
             <td><a href="./showAllTrainings.php" style="color:red;">Click here to view all trainings</a></td>
         </tr>
        
+       <!-- <tr>
+            <td><label>Create New Training Interactively</label></td>
+            <td><a href="./addNewTrainingInteractivly.php" style="color:red;">Click here to start creation of New Training (Interactively)</a></td>
+        </tr> -->
         <tr>
             <td><label>Create New Training</label></td>
             <td><a href="./addNewTraining.php" style="color:red;">Click here to start creation of New Training</a></td>

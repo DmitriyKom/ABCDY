@@ -1,11 +1,5 @@
 <?php
-/* Date         Name            Changes
- * 10/27/2019   Andrey          Coding page
- * 10/28/2019   Dmitriy         Code Cleanup
- *
- *
- *
- */
+
 session_start();//session is starting 
 //checking if loggedin session is set, and role is Manager, if not rederecting to main page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
@@ -57,14 +51,15 @@ $training_text_err = "";
 <div class="page-header">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> please Fill all fields for Adding New Training.
     </h1>
+</div>
     <br><br>
     <div>
-        <form action="./php_scripts/addTrainingToDB.php" method="post">
+        <form action="./php_scripts/addTrainingToDB.php" method="post" enctype="multipart/form-data">
             <table align="center">
                 <tr>
-                    <th>1</th>
-                    <th>2</th>
-                    <th>3</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 <tr>
                     <td><label>Training Title:</label></td>
@@ -87,7 +82,7 @@ $training_text_err = "";
                         </div>
                     </td>
                     <td>
-                        <button onclick="addLinkInputBox(); return false;">add more video links</button>
+                        <button onclick="return false;">add more video links</button>
                     </td>
                 </tr>
                 <div id="add_video_links">
@@ -101,11 +96,11 @@ $training_text_err = "";
                         <div class="form-group <?php echo (!empty($training_document_link_err)) ? 'has-error' : ''; ?>">
                             <input type="text" name="training_document_link" class="form-control"
                                    value="<?php echo $training_document_link; ?>">
-                            <span class="help-block"><?php echo $training_document_link_err; ?></span>
+                            <span class="help-block"><?php $training_document_link_err; ?></span>
                         </div>
                     </td>
                     <td>
-                        <button onclick="addLinkInputBox();">add more document links</button>
+                        <button onclick="return false;">add more document links</button>
                     </td>
                 </tr>
 
@@ -113,12 +108,12 @@ $training_text_err = "";
                     <td><label>Training Document</label></td>
                     <td>
                         <div class="form-group <?php echo (!empty($training_document_err)) ? 'has-error' : ''; ?>">
-                            <input type="file" name="file" class="form-control">
+                            <input type="file" name="file_training_document" class="form-control">
                             <span class="help-block"><?php echo $training_document_err; ?></span>
                         </div>
                     </td>
                     <td>
-                        <button onclick="addLinkInputBox();">add more documents</button>
+                        <button onclick="return false;">add more documents</button>
                     </td>
                 </tr>
 
@@ -143,11 +138,11 @@ $training_text_err = "";
             </div>
         </form>
 
-        <div class="" id="message_box">
-    	<textarea rows="10" cols="100" name="output_text">
+     <!--	   <div class="" id="message_box">
+    	<textarea rows="1" cols="30" name="output_text">
 	        messages will be shown here        
 	   </textarea>
-        </div>
+        </div> -->
         <p>
 
             <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>

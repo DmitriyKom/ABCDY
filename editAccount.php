@@ -25,6 +25,14 @@ $email = "";
 $role = "";
 $user_name = "";
 
+$user_firstName_err ="";
+$user_lastName_err ="";
+$user_address_err ="";
+$user_city_err ="";
+$user_zip_err ="";
+$user_state_err ="";
+$user_email_err ="";
+
 
 if ($_GET) {
     
@@ -37,13 +45,13 @@ if ($_GET) {
         
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_array($result)) {
-                $last_name = $row[lastName];
-                $first_name = $row[firstName];
-                $address = $row[address];
-                $city = $row[city];
-                $state = $row[state];
-                $zip = $row[zip];
-                $email = $row[email];
+                $last_name = $row['lastName'];
+                $first_name = $row['firstName'];
+                $address = $row['address'];
+                $city = $row['city'];
+                $state = $row['state'];
+                $zip = $row['zip'];
+                $email = $row['email'];
                 
             }
             mysqli_free_result($result);
@@ -53,8 +61,8 @@ if ($_GET) {
         
         if (mysqli_num_rows($result2) > 0) {
             while ($row2 = mysqli_fetch_array($result2)) {
-                $role = $row2[role];
-                $user_name = $row2[username];
+                $role = $row2['role'];
+                $user_name = $row2['username'];
                 
             }
             mysqli_free_result($result2);

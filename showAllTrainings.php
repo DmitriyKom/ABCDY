@@ -8,21 +8,21 @@
  */
 
 session_start();//session is starting
-//checking if loggedin session is set, and role is Manager, if not rederecting to main page
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
-    header("location: index.php");
-    exit;
-}
-
-function getUserName($link, $u_id){
-	$select_query = "SELECT username from users where id =" .$u_id;
-	if ($result = mysqli_query($link, $select_query)) {
-		while ($row = mysqli_fetch_array($result)) {
-			return $row['username'];
-		}
+	//checking if loggedin session is set, and role is Manager, if not rederecting to main page
+	if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
+	    header("location: index.php");
+	    exit;
 	}
-	return null;
-}
+	
+	function getUserName($link, $u_id){
+		$select_query = "SELECT username from users where id =" .$u_id;
+		if ($result = mysqli_query($link, $select_query)) {
+			while ($row = mysqli_fetch_array($result)) {
+				return $row['username'];break;
+			}
+		}
+		return "UNKNOWN";
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,14 +60,14 @@ function getUserName($link, $u_id){
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> here you will be able to check trainings of the system.</h1>
     <br><br>
     <div>
-        <form action="./php_scripts/handleAccnt.php" method="get">
+        <form action="./php_scripts/NONE.php" method="get">
             <table align="center">
                 <tr>
                     <th>Training ID</th>
                     <th>Title</th>
                     <th>Date Created</th>
                     <th>Created By</th>
-						  <th>Assign To</th>
+						  <th>Assign Training To</th>
 						  <th>Assign</th>
                     
                 </tr>
@@ -80,10 +80,10 @@ function getUserName($link, $u_id){
                     if (mysqli_num_rows($res) > 0) {
                         while ($row = mysqli_fetch_array($res)) {
                             $web_string = '<tr>';
-                            $web_string .= "<td>".$row['training_id']."</td>";
-                            $web_string .= "<td>".$row['training_title']."</td>";
-                            $web_string .= "<td>".$row['create_dt']."</td>";
-                            $web_string .= "<td>".getUserName($link, $row['created_by'])."</td>";
+                            $web_string .= "<td>".htmlspecialchars($row['training_id'])."</td>";
+                            $web_string .= '<td><a href="./showTraining.php?id='.htmlspecialchars($row['training_id']).'">'.htmlspecialchars($row['training_title']).'</a></td>';
+                            $web_string .= "<td>".htmlspecialchars($row['create_dt'])."</td>";
+                            $web_string .= "<td>".getUserName($link, htmlspecialchars($row['created_by']))."</td>";
                    
                             echo $web_string; // printing to the web page.
                         }
