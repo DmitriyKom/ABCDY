@@ -108,7 +108,7 @@ $question = null;
                     $_SESSION["Test_Question"] = $testQuestion;
                 }
                 for($x = 0; $x<$testQuestion; $x++){
-                    if
+                    
                     echo "<div  id='mainbox' style = 'background-color = ".$color.">";
                         echo "<div class = 'title' id='question'>";
                             echo "Test Question ";
