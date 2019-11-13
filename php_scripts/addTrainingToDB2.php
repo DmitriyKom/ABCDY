@@ -1,4 +1,11 @@
 <?php
+/* Date         Name            Changes
+ * 11/12/2019   Andrey         Initial development
+ *
+ *
+ *
+ */
+
 	session_start();
 	//print_r($_POST);
 	//echo "*************************<br />";
@@ -133,6 +140,8 @@
 		
 		
    }
+   
+   clearSession();
 	header("location: ./../showAllTrainings.php");	
 	
 		
@@ -183,6 +192,26 @@
 	    }
 	
 	    return rmdir($dir);
+	}
+	
+	function clearSession(){ //this function is for clearing all variables and session variables
+		unset($_SESSION['video_links']);
+		unset($_SESSION['document_links']);
+		unset($_SESSION['local_documents']);
+		unset($_SESSION['title']);
+		unset($_SESSION['text']);
+		unset($_SESSION['tmp_folder']);
+		unset($_POST);
+		$training_title = "";
+		$training_video_link = "";
+		$training_document_link="";
+		$training_local_file_link = "";
+		$training_local_file_name = "";
+		$training_text = "";
+		$training_id = -1;	
+		$arr_video_links = array();
+		$arr_document_links = array();	
+		$arr_documents = array();
 	}
 	
 ?>
