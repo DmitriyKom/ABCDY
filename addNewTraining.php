@@ -198,7 +198,7 @@
 	}
 	
 	function createTempDirectory(){
-		$temp_folder = "./temp_documents";
+		$temp_folder = "temp_documents";
 		if(is_dir($temp_folder)===false){
 			mkdir($temp_folder);		
 		}
@@ -298,7 +298,7 @@
                         </div>
                     </td>
                     <td>
-                        <button onclick="" name="add_more_video_links">add video link</button>
+                        <button onclick="" name="add_more_video_links">add this video link</button>
                     </td>
                 </tr>
                <?php //this piece of code is for showing all already entered video links
@@ -321,7 +321,7 @@
                         </div>
                     </td>
                     <td>
-                        <button onclick="" name="add_more_document_links">add document link</button>
+                        <button onclick="" name="add_more_document_links">add this document link</button>
                     </td>
                 </tr>
                 <?php //this piece of code is for showing all already entered document links
@@ -343,7 +343,7 @@
                         </div>
                     </td>
                     <td>
-                        <button onclick="" name="add_more_documents">add document</button>
+                        <button onclick="" name="add_more_documents">add this document</button>
                     </td>
                 </tr>
 					<?php //this piece of code is for showing all already selected document
