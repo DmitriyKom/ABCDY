@@ -42,13 +42,13 @@ if ($_GET) {
             while ($row2 = mysqli_fetch_array($result2)) {
             	
             	$write_to_page.="<tr>";
-            	if($row2['training_link_type']=="EL"){ /// checking if this is internal link
+            	if($row2['training_link_type']=="IL"){ /// checking if this is internal link
             		$write_to_page.="<td>Local File</td>";
 						$write_to_page.='<td><a href="./training_documents/'.htmlspecialchars($row2['training_link']).'">'.htmlspecialchars($row2['training_link']).'</a></td>';
-					}else if($row2['training_link_type']=="YV"){
+					}else if($row2['training_link_type']=="YV"){ //checking if this is youtube link
 						$write_to_page.="<td>Youtube Video:</td>";
 						$write_to_page.='<td><a href="'.htmlspecialchars($row2['training_link']).'">'.htmlspecialchars($row2['training_link']).'</a></td>';
-					} else if($row2['training_link_type']=="IL"){
+					} else if($row2['training_link_type']=="EL"){/// checking if this is external link
 						$write_to_page.="<td>External Link</td>";
 						$write_to_page.='<td><a href="'.htmlspecialchars($row2['training_link']).'">'.htmlspecialchars($row2['training_link']).'</a></td>';
 					}          
