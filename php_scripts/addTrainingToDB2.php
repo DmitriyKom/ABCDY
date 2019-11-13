@@ -67,11 +67,11 @@
         		if ($item == '.' || $item == '..') {
             	continue;
         		}
-				echo $item."<br />";
-        		rename("./../".$_SESSION['tmp_folder'].$item, "./../training_documents/".$training_directory_name."/".$item); // move files from temp to training directory
-        		deleteDirectory(("./../".$_SESSION['tmp_folder'])); // removing temporary directory
+				
+        		rename("./../".$_SESSION['tmp_folder'].$item , "./../training_documents/".$training_directory_name."/".$item); // move files from temp to training directory
+        		
     		}
-	   
+	   	deleteDirectory(("./../".$_SESSION['tmp_folder'])); // removing temporary directory
 	   
 	   
 	   
@@ -86,43 +86,54 @@
 	      
 	   		}
 	   	} 
-	   	/*if($training_video_link!=""){
-				  $insert_training_query = "INSERT INTO training_link (training_id, training_link, training_link_type) values (" .$training_id.",'".mysqli_real_escape_string($link,$training_video_link)."', 'YV')"; 	
-	   		  if (mysqli_query($link, $insert_training_query)) {
-		    
-	   		  } else {
-	       		  echo "ERROR: Could not able to execute sql. "
-	              . mysqli_error($link);
-	      
-	   		}
-	   	}
-	   	if($training_document_link!=""){
-				  $insert_training_query = "INSERT INTO training_link (training_id, training_link, training_link_type) values (" .$training_id.",'".mysqli_real_escape_string($link,$training_document_link)."', 'EL')"; 	
-	   		  if (mysqli_query($link, $insert_training_query)) {
-		    
-	   		  } else {
-	       		  echo "ERROR: Could not able to execute sql. "
-	              . mysqli_error($link);
-	      
-	   		}
-	   	}
-	   	if($training_local_file_name!="" && $training_local_file_link!=""){
-				  $insert_training_query = "INSERT INTO training_link (training_id, training_link, training_link_type) values (" .$training_id.",'".mysqli_real_escape_string($link,$training_local_file_link)."', 'IL')"; 	
-	   		  if (mysqli_query($link, $insert_training_query)) {
-		    
-	   		  } else {
-	       		  echo "ERROR: Could not able to execute sql. "
-	              . mysqli_error($link);
-	      
-	   		}
-	   	}*/
+	   	
+	   	
+	   	foreach($arr_video_links as $training_video_link)
+		   	if($training_video_link!=""){
+					  $insert_training_query = "INSERT INTO training_link (training_id, training_link, training_link_type) values (" .$training_id.",'".mysqli_real_escape_string($link,$training_video_link)."', 'YV')"; 	
+		   		  if (mysqli_query($link, $insert_training_query)) {
+			    
+		   		  } else {
+		       		  echo "ERROR: Could not able to execute sql. "
+		              . mysqli_error($link);
+		      
+		   		}
+		   	}
+	   	
+	   	
+	   	foreach($arr_document_links as $training_document_link)
+		   	if($training_document_link!=""){
+					  $insert_training_query = "INSERT INTO training_link (training_id, training_link, training_link_type) values (" .$training_id.",'".mysqli_real_escape_string($link,$training_document_link)."', 'EL')"; 	
+		   		  if (mysqli_query($link, $insert_training_query)) {
+			    
+		   		  } else {
+		       		  echo "ERROR: Could not able to execute sql. "
+		              . mysqli_error($link);
+		      
+		   		}
+		   	}
+	   	
+	   	
+	   	foreach($arr_documents as $doc){
+	   		$training_local_file_link = $training_id."/".$doc['name'];
+		   	if($training_local_file_link!=""){
+					  $insert_training_query = "INSERT INTO training_link (training_id, training_link, training_link_type) values (" .$training_id.",'".mysqli_real_escape_string($link,$training_local_file_link)."', 'IL')"; 	
+		   		  if (mysqli_query($link, $insert_training_query)) {
+			    
+		   		  } else {
+		       		  echo "ERROR: Could not able to execute sql. "
+		              . mysqli_error($link);
+		      
+		   		}
+		   	}
+		   }
    	}
 		include_once "./../includes/close_conn.inc";
 		
 		
 		
    }
-	//header("location: ./../showAllTrainings.php");	
+	header("location: ./../showAllTrainings.php");	
 	
 		
 	
