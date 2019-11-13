@@ -12,7 +12,6 @@
 	    exit;
 	}
 
-	//print_r($_POST);
 
 	$training_title = "";
 	$training_title_err = "";
@@ -84,48 +83,33 @@
 	
 	
 	
-	if(isset($_SESSION['local_documents'])){
+	if(isset($_SESSION['local_documents'])){ //checking if local uploaded document array session is set
 		$arr_documents = $_SESSION['local_documents'];
 	}else{
 		$arr_documents = array();
 	}
 	
-	/*//Handling add more documents
-	if(isset($_POST['add_more_documents']) && isset($_FILES['file_training_document']['name']) && trim($_FILES['file_training_document']['name'])!==""){
-		if(checkDublicateFiles($_FILES['file_training_document']['name'], $arr_documents)){
-			$training_document_err = $_FILES['file_training_document']['name']. " --> This Document You already included";
-		}else{
-			
-			array_push($arr_documents, $_FILES['file_training_document']);
-						
-		}
-		$_SESSION['local_documents']= $arr_documents;		
-	}*/
-	
 	
 	
 	//Handling add more documents
 	if(isset($_POST['add_more_documents']) && isset($_FILES['file_training_document']['name']) && trim($_FILES['file_training_document']['name'])!==""){
-		//print_r($_FILES);
-		//print_r($arr_documents);
+
+
 		if(checkDublicateFiles($_FILES['file_training_document']['name'], $arr_documents)){
 			$training_document_err = $_FILES['file_training_document']['name']. " --> This Document You already included";
 		}else{
 			$tmp_folder = createTempDirectory();
 			$_SESSION['tmp_folder']=$tmp_folder;
-			//echo $temp_folder;
 			array_push($arr_documents, $_FILES['file_training_document']);
 			move_uploaded_file($_FILES['file_training_document']['tmp_name'], $tmp_folder.$_FILES['file_training_document']['name']);
 						
 		}
-		$_SESSION['local_documents']= $arr_documents;	
+		$_SESSION['local_documents'] = $arr_documents;	
 
 	}
 	
-	
-	
-	
-	if(isset($_POST['training_text'])){
+
+	if(isset($_POST['training_text'])){ // checking if training text been entered
 		$training_text = sanitizeString($_POST['training_text']);
 		$_SESSION['text'] = $training_text;
 	}
@@ -138,27 +122,17 @@
 			$training_title_err = "Title is required to create training";		
 		}
 	}
-//	print_r($_FILES);
-//	print_r($arr_documents);
-//	echo count($arr_documents);
-	//echo isset($_POST['add_more_video_links']);
-	//echo isset($_POST['add_more_document_links']);
-//	echo isset($_POST['add_more_documents']);
-	
-	//print_r($arr_video_links);
-	//print_r($arr_document_links);
-	//echo checkURL("https://www.youtube.com/watch?v=VR2j3hIGs_o");
-	//echo $training_document_link_err;
 	
 	//this function is for checking if the file is already in submitting array
 	function checkDublicateFiles($fileName, $arr_documents){ 
+		$answer = false;
 		foreach($arr_documents as $doc){
-			if($doc['name']===$fileName){
-				return true;			
-			}else{
-				return false;
+		
+			if($doc['name']==$fileName){
+				$answer= true;			
 			}		
 		}
+		return $answer;
 	}
 	
 	//this function is for checking if url valid or not
@@ -175,7 +149,8 @@
 	}
 	
 	function resetInputData(){ //this function is for clearing all variables
-		deleteDirectory($_SESSION['tmp_folder']);
+		if(isset($_SESSION['tmp_folder']))
+			deleteDirectory($_SESSION['tmp_folder']);
 		unset($_SESSION['video_links']);
 		unset($_SESSION['document_links']);
 		unset($_SESSION['local_documents']);
@@ -197,8 +172,8 @@
 	
 	function sanitizeString($str){ // to sanitizeStrings
 		if(get_magic_quotes_gpc()) $str = stripslashes($str);	
-		$str= htmlentities($str);
-		$str=strip_tags($str);
+		$str = htmlentities($str);
+		$str = strip_tags($str);
 		return $str;
 	}
 	
@@ -230,8 +205,7 @@
 	
 	        if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
 	            return false;
-	        }
-	
+	        }	
 	    }
 	
 	    return rmdir($dir);
@@ -355,8 +329,7 @@
                	
                	foreach($arr_documents as $document){
 							 echo "<tr><td>added document:</td>";
-							 echo "<td>".$document['name']."</td>";  
-							 //print_r($document);            	
+							 echo "<td>".$document['name']."</td>";             	
                	}
                
                	echo "</tr>";
@@ -366,8 +339,7 @@
                     <td>Training Text</td>
                     <td>
                         <div class="form-group <?php echo (!empty($training_text_err)) ? 'has-error' : ''; ?>">
-	                <textarea rows="20" cols="100" name="training_text"><?php echo $training_text ?>
-	                </textarea>
+	                			<textarea rows="20" cols="100" name="training_text"><?php echo $training_text ?></textarea>
                             <span class="help-block"><?php echo $training_text_err; ?></span>
                         </div>
                     </td>
@@ -375,8 +347,8 @@
             </table>
 
             <div class="form-group">
-                <a href="./manager.php" class="btn btn-default" value="Back">Back</a>
-                <button class="btn btn-primary" name="submit" >Submit</button>
+                <a href="./php_scripts/clearTrainingAddingSessionVariables.php" class="btn btn-default" value="Back">Back</a>
+                <button class="btn btn-primary" name="submit" >Create Training</button>
                 <button class="btn" name="reset" style="color: red;">Reset</button>
             </div>
         </form>
