@@ -1,5 +1,10 @@
 <?php
- 
+ /* Date         Name            Changes
+ * 11/12/2019   Andrey         Initial development
+ *
+ *
+ *
+ */
 	session_start();//session is starting 
 	//checking if loggedin session is set, and role is Manager, if not rederecting to main page
 	if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
