@@ -1,20 +1,14 @@
 <?php
-/* Date         Name            Changes
- * 11/12/2019   Andrey         Initial development
- *
- *
- *
- */
+	/* Date         Name            Changes
+	 * 11/12/2019   Andrey         Initial development
+	 *	This script is for adding Training Information into DB, 
+	 *	information which is processed is sent through session variables.
+	 * 
+	 *
+	 */
 
 	session_start();
-	//print_r($_POST);
-	//echo "*************************<br />";
-	//print_r($_SESSION);
-	//print_r($_FILES);
-	//$target_dir = "uploads/";
-	//$target_file = $target_dir . basename($_FILES["file_training_document"]["name"]);	
-	//echo $target_file;
-	
+
 	
 	$training_title = "";
 	$training_video_link = "";
@@ -48,14 +42,10 @@
 		unset($_SESSION['local_documents']);
 	}
 	
-	print_r($_FILES);
-	//print_r($_SESSION);
-	
-	//echo $training_title. stripslashes($training_video_link).$training_document_link.$training_text;	
+
 	if($training_title!="")	{
 		include_once "./../includes/open_conn.inc";
 		$insert_training_query = "INSERT INTO training (created_by, training_title) values (". mysqli_real_escape_string($link, $_SESSION['user_id']) .",'". mysqli_real_escape_string($link,$training_title) ."')";
-		//echo "<br>".$insert_training_query;
 		
 		if (mysqli_query($link, $insert_training_query)) {
 		      //echo "Training added successfully";
@@ -70,16 +60,18 @@
 	   	
 	   	$training_directory_name = createDirectory($training_id); // this is created new directory for training and return path to it
 	  
-	   	foreach (scandir(("./../".$_SESSION['tmp_folder'])) as $item) { // moving all upload temporary documents into training folder
-        		if ($item == '.' || $item == '..') {
-            	continue;
-        		}
-				
-        		rename("./../".$_SESSION['tmp_folder'].$item , "./../training_documents/".$training_directory_name."/".$item); // move files from temp to training directory
-        		
-    		}
-	   	deleteDirectory(("./../".$_SESSION['tmp_folder'])); // removing temporary directory
-	   
+	   	
+	   	if(isset($_SESSION['tmp_folder']) && trim($_SESSION['tmp_folder'])!==""){// checking if temporary directory exists, which is mean files were uploaded
+		   	foreach (scandir(("./../".$_SESSION['tmp_folder'])) as $item) { // moving all upload temporary documents into training folder
+	        		if ($item == '.' || $item == '..') {
+	            	continue;
+	        		}
+					
+	        		rename("./../".$_SESSION['tmp_folder'].$item , "./../training_documents/".$training_directory_name."/".$item); // move file from temp to training directory
+	        		
+	    		}
+		   	deleteDirectory(("./../".$_SESSION['tmp_folder'])); // removing temporary directory
+	   	}
 	   
 	   
 	   	if(trim($training_text)!=""){
@@ -141,7 +133,7 @@
 		
    }
    
-   clearSession();
+   clearSession();//calling function to clear all variables and session variables
 	header("location: ./../showAllTrainings.php");	
 	
 		
