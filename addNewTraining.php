@@ -1,8 +1,8 @@
 <?php
  /* Date         Name            Changes
  * 11/12/2019   Andrey         Initial development
- *
- *
+ * This php page is for getting information about the new creating training,
+ *	and for sending it to script to add it to DB.
  *
  */
 	session_start();//session is starting 
@@ -31,12 +31,17 @@
 	}
 	
 	
+	
+	
 	if(isset($_POST['training_title']) && trim($_POST['training_title'])!==""){ //checking if title already been entered
 		$training_title = $_POST['training_title'];
 		$_SESSION['title']=$training_title;
-	}else {
+	}elseif(isset($_SESSION['title']) && trim($_SESSION['title'])!==""){ //checking if title is already in session variable
+		$training_title = $_SESSION['title'];
+	}else{
 		$training_title_err = "Please Enter Training Title";	
 	}
+	
 	
 
 	
@@ -123,6 +128,42 @@
 		}
 	}
 	
+	if(isset($_POST['remove_video_link'])){
+		removeVideoLinkFromArray($arr_video_links, $_POST['remove_video_link']);
+	}
+	
+	if(isset($_POST['remove_document_link'])){
+		removeDocLinkFromArray($arr_document_links, $_POST['remove_document_link']);
+	}
+	if(isset($_POST['remove_document'])){
+		removeDocument($arr_documents, $_POST['remove_document']);
+	}
+	
+	
+	
+	function removeDocument($arr_documents, $document_to_remove){ //this function is for removing uploaded document
+		if(is_file($_SESSION['tmp_folder']. DIRECTORY_SEPARATOR . $document_to_remove)) //checking if this file exists
+			unlink($_SESSION['tmp_folder']. DIRECTORY_SEPARATOR . $document_to_remove); // removing file
+		
+		//print_r($arr_documents);
+		//echo $document_to_remove;		
+		$index = 0;
+		foreach($arr_documents as $doc){
+			if($doc['name']===$document_to_remove){
+				//print_r($doc);
+				unset($arr_documents[$index]); // removing element
+				$arr_documents=array_values($arr_documents); // resetting indexes to be started from 0 ()
+				$_SESSION['local_documents']=$arr_documents;
+				break;			
+			}
+			$index++;		
+		}		
+		
+		header("Location: ".$_SERVER['PHP_SELF']);
+		
+	}
+	
+	
 	//this function is for checking if the file is already in submitting array
 	function checkDublicateFiles($fileName, $arr_documents){ 
 		$answer = false;
@@ -149,7 +190,7 @@
 	}
 	
 	function resetInputData(){ //this function is for clearing all variables
-		if(isset($_SESSION['tmp_folder']))
+		if(isset($_SESSION['tmp_folder']) && trim($_SESSION['tmp_folder'])!=="")
 			deleteDirectory($_SESSION['tmp_folder']);
 		unset($_SESSION['video_links']);
 		unset($_SESSION['document_links']);
@@ -209,6 +250,26 @@
 	    }
 	
 	    return rmdir($dir);
+	}
+	
+	function removeVideoLinkFromArray($arr_links, $link_to_remove){ //this function is for deleting specific element from  array
+		if (($key = array_search($link_to_remove, $arr_links)) !== false) {
+		    unset($arr_links[$key]);
+			 $_SESSION['video_links']=$arr_links;
+		}
+		
+		header("Location: ".$_SERVER['PHP_SELF']);
+			
+	}
+	
+	function removeDocLinkFromArray($arr_links, $link_to_remove){ //this function is for deleting specific element from  array
+		if (($key = array_search($link_to_remove, $arr_links)) !== false) {
+		    unset($arr_links[$key]);
+			 $_SESSION['document_links']=$arr_links;
+		}
+		
+		header("Location: ".$_SERVER['PHP_SELF']);
+			
 	}
 	
 ?>
@@ -284,7 +345,8 @@
                	
                	foreach($arr_video_links as $video_link){
 							 echo "<tr><td>added video link:</td>";
-							 echo "<td>$video_link</td>";              	
+							 echo "<td>".htmlspecialchars($video_link)."</td>"; 
+							 echo "<td><button onclick='' class='btn btn-danger' name='remove_video_link' value='".htmlspecialchars($video_link)."'>Remove Link</button></td>";             	
                	}
                
                	echo "</tr>";
@@ -307,7 +369,8 @@
                	
                	foreach($arr_document_links as $document_link){
 							 echo "<tr><td>added document link: </td>";
-							 echo "<td>$document_link</td>";              	
+							 echo "<td>$document_link</td>"; 
+ 							 echo "<td><button onclick='' class='btn btn-danger' name='remove_document_link' value='".htmlspecialchars($document_link)."'>Remove Link</button></td>";                 	
                	}
                
                	echo "</tr>";
@@ -329,7 +392,8 @@
                	
                	foreach($arr_documents as $document){
 							 echo "<tr><td>added document:</td>";
-							 echo "<td>".$document['name']."</td>";             	
+							 echo "<td>".$document['name']."</td>";  
+							 echo "<td><button onclick='' class='btn btn-danger' name='remove_document' value='".htmlspecialchars($document['name'])."'>Remove Document</button></td>";            	
                	}
                
                	echo "</tr>";
