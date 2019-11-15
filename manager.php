@@ -51,7 +51,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_
     <br><br>
     <table align="center">
         <tr>
-            <th>Action Name</th>
+            <th>Action</th>
             <th>Action Link</th>
         </tr>
         <tr>
@@ -66,6 +66,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_
         <tr>
             <td><label>Create New Training</label></td>
             <td><a href="./addNewTraining.php" style="color:red;">Click here to start creation of New Training</a></td>
+        </tr>
+			<tr>
+            <td><label>Create New Test</label></td>
+            <td><a href="./addNewTest.php" style="color:red;">Click here to start creation of New Test</a></td>
         </tr>
 
     </table>
