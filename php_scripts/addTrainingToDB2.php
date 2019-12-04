@@ -43,7 +43,7 @@
 	}
 	
 
-	if($training_title!="")	{
+	if($training_title!="")	{ //Checking if training title is exist(title is required to create Training)
 		include_once "./../includes/open_conn.inc";
 		$insert_training_query = "INSERT INTO training (created_by, training_title) values (". mysqli_real_escape_string($link, $_SESSION['user_id']) .",'". mysqli_real_escape_string($link,$training_title) ."')";
 		
@@ -134,7 +134,7 @@
    }
    
    clearSession();//calling function to clear all variables and session variables
-	header("location: ./../showAllTrainings.php");	
+	header("location: ./../showAllTrainings.php");	// redirecting to show ALL Trainings page
 	
 		
 	
@@ -156,7 +156,7 @@
 		if(is_dir($main_folder)===false){
 			mkdir($main_folder);		
 		}
-		if(is_dir($main_folder."/".$training_id)==false){
+		if(is_dir($main_folder."/".$training_id)===false){
 			mkdir($main_folder."/".$training_id);	
 		}
 		return $training_id;
