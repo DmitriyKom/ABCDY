@@ -80,12 +80,12 @@ CREATE TABLE test (
 );
 CREATE TABLE training_assigned (
     training_assigned_id int PRIMARY KEY AUTO_INCREMENT,
-    training_id int NOT NULL,
-    test_id int NOT NULL,
+    training_id int default NULL,
+    test_id int default NULL, 
     assigned_by int NOT NULL,
     assigned_user_id int NOT NULL,
-    assigned_dt datetime DEFAULT current_timestamp(),
-    completed_dt datetime DEFAULT current_timestamp(),
+    assigned_dt datetime NOT NULL DEFAULT current_timestamp(),
+    completed_dt datetime DEFAULT null,
     FOREIGN KEY (training_id) REFERENCES training(training_id),
     FOREIGN KEY (assigned_by) REFERENCES users(id),
     FOREIGN KEY (assigned_user_id) REFERENCES users(id),
