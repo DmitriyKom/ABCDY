@@ -152,8 +152,8 @@
 			if($doc['name']===$document_to_remove){
 				//print_r($doc);
 				unset($arr_documents[$index]); // removing element
-				$arr_documents=array_values($arr_documents); // resetting indexes to be started from 0 ()
-				$_SESSION['local_documents']=$arr_documents;
+				$arr_documents = array_values($arr_documents); // resetting indexes to be started from 0 (as after deletion of element indexes are not rearrange)
+				$_SESSION['local_documents'] = $arr_documents; // assigning array with removed element to session variable
 				break;			
 			}
 			$index++;		

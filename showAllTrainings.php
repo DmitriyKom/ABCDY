@@ -58,6 +58,7 @@ session_start();//session is starting
 <body>
 <div class="page-header">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> here you will be able to check trainings of the system.</h1>
+</div>
     <br><br>
     <div>
         <form action="./php_scripts/NONE.php" method="get">
@@ -67,8 +68,7 @@ session_start();//session is starting
                     <th>Title</th>
                     <th>Date Created</th>
                     <th>Created By</th>
-						  <th>Assign Training To</th>
-						  <th>Assign</th>
+						  <th>Assign Training To User/s</th>
                     
                 </tr>
 
@@ -84,6 +84,7 @@ session_start();//session is starting
                             $web_string .= '<td><a href="./showTraining.php?id='.htmlspecialchars($row['training_id']).'">'.htmlspecialchars($row['training_title']).'</a></td>';
                             $web_string .= "<td>".htmlspecialchars($row['create_dt'])."</td>";
                             $web_string .= "<td>".getUserName($link, htmlspecialchars($row['created_by']))."</td>";
+                            $web_string .= "<td><a href='./assignTrainingTo.php?training_id=".htmlspecialchars($row['training_id'])."' class='btn btn-info' title='Click this button to assign training ".htmlspecialchars($row['training_id'])." to users'>Assign To...</a></td>";
                    
                             echo $web_string; // printing to the web page.
                         }
@@ -107,7 +108,7 @@ session_start();//session is starting
             <a href="./manager.php" type="reset" class="btn btn-default" value="Back">Back</a>
             <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
         </p>
-
+	</div>
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	print_r($_POST);
+	//print_r($_POST);
 	//echo "*************************<br />";
 	//print_r($_SESSION);
 	//print_r($_FILES);
@@ -41,18 +41,20 @@
 		include_once "./../includes/open_conn.inc";
 		$insert_training_query = "INSERT INTO training (created_by, training_title) values (". mysqli_real_escape_string($link, $_SESSION['user_id']) .",'". mysqli_real_escape_string($link,$training_title) ."')";
 		//echo "<br>".$insert_training_query;
+		
 		if (mysqli_query($link, $insert_training_query)) {
 		      //echo "Training added successfully";
-				$training_id = mysqli_insert_id($link);
+				$training_id = mysqli_insert_id($link);//getting last inserted training id
 	   } else {
 	       echo "ERROR: Could not able to execute sql. "
 	           . mysqli_error($link);
 	      
 	   }
+	   
 	   if($training_id!=-1){//if training was added successfully and training_id was returned.
 	   	$training_directory_name = createDirectory($training_id); // this is craated new directory for training and return path to it
 	   	
-	   	$training_local_file_link = $training_directory_name."/".$training_local_file_name; // link to file on server 
+	   	$training_local_file_link = $training_directory_name."/".$training_local_file_name; // link to file on server, with file name
 	   	
 	   //	echo $training_local_file_link;	
 	   	move_uploaded_file($_FILES['file_training_document']['tmp_name'], "./../training_documents/".$training_local_file_link ); //upload file to server
@@ -80,7 +82,7 @@
 	   		}
 	   	}
 	   	if($training_document_link!=""){
-				  $insert_training_query = "INSERT INTO training_link (training_id, training_link, training_link_type) values (" .$training_id.",'".mysqli_real_escape_string($link,$training_document_link)."', 'IL')"; 	
+				  $insert_training_query = "INSERT INTO training_link (training_id, training_link, training_link_type) values (" .$training_id.",'".mysqli_real_escape_string($link,$training_document_link)."', 'EL')"; 	
 	   		  if (mysqli_query($link, $insert_training_query)) {
 		    
 	   		  } else {
@@ -90,7 +92,7 @@
 	   		}
 	   	}
 	   	if($training_local_file_name!="" && $training_local_file_link!=""){
-				  $insert_training_query = "INSERT INTO training_link (training_id, training_link, training_link_type) values (" .$training_id.",'".mysqli_real_escape_string($link,$training_local_file_link)."', 'EL')"; 	
+				  $insert_training_query = "INSERT INTO training_link (training_id, training_link, training_link_type) values (" .$training_id.",'".mysqli_real_escape_string($link,$training_local_file_link)."', 'IL')"; 	
 	   		  if (mysqli_query($link, $insert_training_query)) {
 		    
 	   		  } else {
@@ -116,8 +118,8 @@
 		return $str;
 	}	
 	
-	function sanitizeMySQL($str){
-		$str = mysqli_real_escape_string($str);
+	function sanitizeMySQL($link, $str){
+		$str = mysqli_real_escape_string($link, $str);
 		$str = sanitizeString($str);
 		return $str;
 	}
