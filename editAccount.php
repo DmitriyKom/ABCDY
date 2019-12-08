@@ -110,18 +110,18 @@ if ($_GET) {
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> please make needed changes.</h1>
     <br><br>
     <div>
-        <form action="./php_scripts/editAccount.php" method="get">
+        <form action="./php_scripts/editUsersInfoInDB.php" method="post">
 
             <table align="center">
                 <tr>
                     <th>Field Name</th>
                     <th>Current Value</th>
                     <th>New Value</th>
-                    <th>Make Changes</th>
                 </tr>
                 <tr>
                     <th>id</th>
                     <td><?php echo $u_id; ?></td>
+                    <td><input type="hidden" name="editing_user_id" value="<?php echo $u_id; ?>"></td>
                 </tr>
                 <tr>
                     <th>username</th>
@@ -139,12 +139,7 @@ if ($_GET) {
                             </select>
                         </div>
                     </td>
-                    <td>
-                        <div class="form-group">
-                            <input type="button" name="" class="form-control" value="Ok">
-                        </div>
-
-                    </td>
+                    
                 </tr>
                 <tr>
                     <th>First Name</th>
@@ -156,12 +151,7 @@ if ($_GET) {
                             <span class="help-block"><?php echo $user_firstName_err; ?></span>
                         </div>
                     </td>
-                    <td>
-                        <div class="form-group">
-                            <input type="button" name="" class="form-control" value="Ok">
-                        </div>
-
-                    </td>
+                
                 </tr>
                 <tr>
                     <th>Last Name</th>
@@ -172,12 +162,7 @@ if ($_GET) {
                             <span class="help-block"><?php echo $user_lastName_err; ?></span>
                         </div>
                     </td>
-                    <td>
-                        <div class="form-group">
-                            <input type="button" name="" class="form-control" value="Ok">
-                        </div>
-
-                    </td>
+               
                 </tr>
                 <tr>
                     <th>Address</th>
@@ -188,12 +173,7 @@ if ($_GET) {
                             <span class="help-block"><?php echo $user_address_err; ?></span>
                         </div>
                     </td>
-                    <td>
-                        <div class="form-group">
-                            <input type="button" name="" class="form-control" value="Ok">
-                        </div>
-
-                    </td>
+                   
                 </tr>
                 <tr>
                     <th>City</th>
@@ -204,12 +184,7 @@ if ($_GET) {
                             <span class="help-block"><?php echo $user_city_err; ?></span>
                         </div>
                     </td>
-                    <td>
-                        <div class="form-group">
-                            <input type="button" name="" class="form-control" value="Ok">
-                        </div>
-
-                    </td>
+                   
                 </tr>
                 <tr>
                     <th>State</th>
@@ -220,11 +195,7 @@ if ($_GET) {
                             <span class="help-block"><?php echo $user_state_err; ?></span>
                         </div>
                     </td>
-                    <td>
-                        <div class="form-group">
-                            <input type="button" name="" class="form-control" value="Ok">
-                        </div>
-                    </td>
+                    
                 </tr>
                 <tr>
                     <th>Zip</th>
@@ -235,11 +206,7 @@ if ($_GET) {
                             <span class="help-block"><?php echo $user_zip_err; ?></span>
                         </div>
                     </td>
-                    <td>
-                        <div class="form-group">
-                            <input type="button" name="" class="form-control" value="Ok">
-                        </div>
-                    </td>
+                  
                 </tr>
                 <tr>
                     <th>Email</th>
@@ -250,13 +217,12 @@ if ($_GET) {
                             <span class="help-block"><?php echo $user_email_err; ?></span>
                         </div>
                     </td>
-                    <td>
-                        <div class="form-group">
-                            <input type="button" name="" class="form-control" value="Ok">
-                        </div>
-                    </td>
+              
                 </tr>
             </table>
+            <div class="form-group">
+                <input type="submit" name="" class="btn btn-warning" value="Make Changes">
+            </div>
         </form>
         <p>
             <a href="./showAllUsers.php" type="reset" class="btn btn-default" value="Back">Back</a>
