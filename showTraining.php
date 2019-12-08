@@ -1,8 +1,12 @@
 <?php
+/* Date         Name            Changes
+ * 10/27/2019   Andrey          Coding page
+ *
+ *
+ *
+ */
 
-
-
-
+include('wrapper/Header.php');
 session_start();//session is starting
 //checking if loggedin session is set, and role is Manager, if not rederecting to main page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
@@ -42,13 +46,13 @@ if ($_GET) {
             while ($row2 = mysqli_fetch_array($result2)) {
             	
             	$write_to_page.="<tr>";
-            	if($row2['training_link_type']=="EL"){ /// checking if this is internal link
+            	if($row2['training_link_type']=="IL"){ /// checking if this is internal link
             		$write_to_page.="<td>Local File</td>";
 						$write_to_page.='<td><a href="./training_documents/'.htmlspecialchars($row2['training_link']).'">'.htmlspecialchars($row2['training_link']).'</a></td>';
-					}else if($row2['training_link_type']=="YV"){
+					}else if($row2['training_link_type']=="YV"){ //checking if this is youtube link
 						$write_to_page.="<td>Youtube Video:</td>";
 						$write_to_page.='<td><a href="'.htmlspecialchars($row2['training_link']).'">'.htmlspecialchars($row2['training_link']).'</a></td>';
-					} else if($row2['training_link_type']=="IL"){
+					} else if($row2['training_link_type']=="EL"){/// checking if this is external link
 						$write_to_page.="<td>External Link</td>";
 						$write_to_page.='<td><a href="'.htmlspecialchars($row2['training_link']).'">'.htmlspecialchars($row2['training_link']).'</a></td>';
 					}          
@@ -79,17 +83,18 @@ if ($_GET) {
     include_once("./includes/close_conn.inc");
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+
     <title>Training Description</title>
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">-->
     <link rel="stylesheet" href="./design/bootstrap.css">
     <style type="text/css">
         body {
             font: 14px sans-serif;
             text-align: center;
+            background-image: url("wrapper/Background.jpeg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
         table {
             font-family: arial, sans-serif;
@@ -105,6 +110,10 @@ if ($_GET) {
         tr:nth-child(even) {
             background-color: #dddddd;
         }
+        #wrapper{
+            background-color: white;
+        }
+        
     </style>
 </head>
 <body>
@@ -121,5 +130,6 @@ if ($_GET) {
         </p>
         
    </div>
-</body>
-</html>
+<?php
+include('wrapper/Footer.php');
+?>

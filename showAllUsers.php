@@ -6,7 +6,7 @@
  *
  *
  */
-
+include('wrapper/Header.php');
 session_start();//session is starting
 //checking if loggedin session is set, and role is Manager, if not rederecting to main page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "HR") {
@@ -14,38 +14,38 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_
     exit;
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
     <script type="text/javascript" src="./js_scripts/addMoreLinks.js"></script>
-    <meta charset="UTF-8">
     <title>Handle Users</title>
-
     <link rel="stylesheet" href="./design/bootstrap.css">
     <style type="text/css">
         body {
             font: 14px sans-serif;
             text-align: center;
+            background-image: url("wrapper/Background.jpeg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
         }
 
         table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
-            width: 75%;
+            width: 90%;
         }
 
         td, th {
-            border: 1px solid #dddddd;
             text-align: center;
             padding: 8px;
         }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
+        .page-header{
+            background-color: white;
+            margin-left: -10%;
+            width: 40%;
+            overflow: scroll;
+            margin-top: -30px;
+            height: 800px;
         }
     </style>
-</head>
-<body>
 <div class="page-header">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> here you will be able to edit users.</h1>
     <br><br>
@@ -96,21 +96,16 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_
                    
                     return false;
                 };
-                
-                
                 include_once("./includes/close_conn.inc"); //closing connection to db
              ?>
             </table>
         </form>
         <p>
             <a href="./hr.php" type="reset" class="btn btn-default" value="Back">Back</a>
-            <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
         </p>
-
-
-</body>
-</html>
-
+<?php
+include('wrapper/Footer.php');
+?>
 
 
 

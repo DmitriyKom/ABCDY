@@ -7,18 +7,13 @@
  *
  *
  */
-
+include('wrapper/Header.php');
 session_start();
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
     header("location: index.php");
     exit;
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
     <title>Welcome</title>
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">-->
     <link rel="stylesheet" href="./design/bootstrap.css">
@@ -26,6 +21,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_
         body {
             font: 14px sans-serif;
             text-align: center;
+            background-image: url("wrapper/Background.jpeg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         table {
@@ -35,44 +35,54 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_
         }
 
         td, th {
-            border: 1px solid #dddddd;
             text-align: center;
             padding: 8px;
         }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
+        .page-header{
+            background-color: white;
+            margin-left: -10%;
+            width: 40%;
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: none;
+            background-color: lightblue;
+        }
+        .row{
+            color:#000000;
+            margin-top: -100px;
+            text-decoration: none;
+            font-weight:  bold;
+            font-size: 2.5em;
+            line-height: 1.42857143;
+            text-align: center;
+            vertical-align: middle;
+            border-radius: 10px;
         }
     </style>
-</head>
-<body>
 <div class="page-header">
     <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to the Manager Portal.</h1>
     <br><br>
     <table align="center">
         <tr>
-            <th>Action Name</th>
-            <th>Action Link</th>
+           <a href="./showAllTrainings.php" class="row">Show All Trainings</a>
         </tr>
         <tr>
-            <td><label>Show All Trainings</label></td>
-            <td><a href="./showAllTrainings.php" style="color:red;">Click here to view all trainings</a></td>
+            <a href="./showAllAssignedTrainings.php" class="row">Show All Assigned Trainings</a>
         </tr>
-       
-       <!-- <tr>
-            <td><label>Create New Training Interactively</label></td>
-            <td><a href="./addNewTrainingInteractivly.php" style="color:red;">Click here to start creation of New Training (Interactively)</a></td>
-        </tr> -->
         <tr>
-            <td><label>Create New Training</label></td>
-            <td><a href="./addNewTraining.php" style="color:red;">Click here to start creation of New Training</a></td>
+            <a href="./addNewTraining.php" class="row">Create New Training</a>
+        </tr>
+			<tr>
+            <a href="./addNewTest.php" class="row">Create New Test</a>
         </tr>
 
     </table>
+    <br>
+    <p>
+        <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
+    </p>
 </div>
-<p>
-
-    <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
-</p>
-</body>
-</html>
+<?php
+include('wrapper/Footer.php');
+?>

@@ -5,6 +5,7 @@
  *
  *
  */
+include('wrapper/Header.php');
 session_start();//session is starting
 //checking if logged in session is set, and role is Manager, if not rederecting to main page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
@@ -14,6 +15,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_
 }
 if(isset($_POST['Add'])){
     add_row();
+    
 }
 if(isset($_POST['Submit'])){
     submit();
@@ -41,18 +43,18 @@ $answer2 = null;
 $answer3 = null;
 $question = null;
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    
     <script type="text/javascript" src="./js_scripts/addMoreLinks.js"></script>
-    <meta charset="UTF-8">
     <title>Add New Training</title>
     <link rel="stylesheet" href="./design/bootstrap.css">
     <style type="text/css">
         body {
             font: 14px sans-serif;
             text-align: center;
+            background-image: url("wrapper/Background.jpeg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
         #mainbox{
             border: 2px solid #dddddd;
@@ -93,10 +95,18 @@ $question = null;
         #quest{
             width: 75%;
         }
+        .wrapper{
+            background-color: white;
+            margin-left: -17%;
+            width: 60%;
+            margin-top: -30px;
+            display:block;
+            overflow: scroll;
+            height: 800px;
+            display:block;
+        }
     </style>
-</head>
-<body>
-<div class="page-header">
+<div class = "wrapper">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>
     </h1>
 
@@ -108,8 +118,7 @@ $question = null;
                     $_SESSION["Test_Question"] = $testQuestion;
                 }
                 for($x = 0; $x<$testQuestion; $x++){
-                    
-                    echo "<div  id='mainbox' style = 'background-color = ".$color.">";
+                    echo "<div  id='mainbox'>";
                         echo "<div class = 'title' id='question'>";
                             echo "Test Question ";
                             echo "<br>";
@@ -139,11 +148,7 @@ $question = null;
                 
             </div>
         </form>
-
-</body>
-</html>
-
-
+</div>
 
 
 

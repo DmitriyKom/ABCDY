@@ -6,6 +6,7 @@
  *
  *
  */
+include('wrapper/Header.php');
 	session_start();//session is starting 
 	//checking if loggedin session is set, and role is Manager, if not rederecting to main page
 	if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
@@ -48,11 +49,6 @@
     	}
 	}
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
     <script type="text/javascript" src="./js_scripts/addMoreLinks.js"></script>
     <meta charset="UTF-8">
     <title>Add New Training</title>
@@ -61,6 +57,10 @@
         body {
             font: 14px sans-serif;
             text-align: center;
+            background-image: url("wrapper/Background.jpeg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
         }
         table {
             font-family: arial, sans-serif;
@@ -68,24 +68,29 @@
             width: 75%;
         }
         td, th {
-            border: 1px solid #dddddd;
             text-align: center;
             padding: 8px;
         }
-        tr:nth-child(even) {
-            background-color: #dddddd;
+
+        .page-header {
+            background-color: white;
+            margin-left: -10%;
+            width: 40%;
+            margin-top: -30px;
+            display: block;
+            overflow: auto;
+            height: 800px;
+            display: block;
         }
     </style>
-</head>
-<body>
 	<div class="page-header">
     	<h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> here you are able to add New Training.</h1>
-	</div>    
+	  
     <h1>Please Follow Steps to  Add The New Training.</h1>
-    <h2>Step 
-    
-    
-    <?php echo htmlspecialchars($stepNumber);
+    <h2>Step
+
+
+<?php echo htmlspecialchars($stepNumber);
     	$write_to_page = "";
     	if($stepNumber==1){
 			echo " Add Title";
@@ -168,9 +173,10 @@
         </p>
 
 	</div>
-
-</body>
-</html>
+    </div>
+<?php
+    include('wrapper/Footer.php');
+    ?>
 
 
 

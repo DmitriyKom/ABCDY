@@ -6,7 +6,7 @@
  *
  *
  */
-
+include('wrapper/Header.php');
 session_start();//session is starting
 	//checking if loggedin session is set, and role is Manager, if not rederecting to main page
 	if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
@@ -24,40 +24,42 @@ session_start();//session is starting
 		return "UNKNOWN";
 	}
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script type="text/javascript" src="./js_scripts/addMoreLinks.js"></script>
-    <meta charset="UTF-8">
-    <title>Trainings</title>
 
+    <script type="text/javascript" src="./js_scripts/addMoreLinks.js"></script>
+    <title>Trainings</title>
     <link rel="stylesheet" href="./design/bootstrap.css">
     <style type="text/css">
         body {
             font: 14px sans-serif;
             text-align: center;
+            background-image: url("wrapper/Background.jpeg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
-            width: 75%;
+            width: 95%;
         }
 
         td, th {
-            border: 1px solid #dddddd;
             text-align: center;
             padding: 8px;
         }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
+        
+        .page-header{
+            background-color: white;
+            margin-left: -10%;
+            width: 40%;
+            text-decoration: none;
         }
+        
     </style>
-</head>
-<body>
 <div class="page-header">
-    <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> here you will be able to check trainings of the system.</h1>
+    <h1>Available trainings for <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></h1>
     <br><br>
     <div>
         <form action="./php_scripts/NONE.php" method="get">
@@ -67,8 +69,7 @@ session_start();//session is starting
                     <th>Title</th>
                     <th>Date Created</th>
                     <th>Created By</th>
-						  <th>Assign Training To</th>
-						  <th>Assign</th>
+						  <th>Assign Training To User/s</th>
                     
                 </tr>
 
@@ -84,6 +85,7 @@ session_start();//session is starting
                             $web_string .= '<td><a href="./showTraining.php?id='.htmlspecialchars($row['training_id']).'">'.htmlspecialchars($row['training_title']).'</a></td>';
                             $web_string .= "<td>".htmlspecialchars($row['create_dt'])."</td>";
                             $web_string .= "<td>".getUserName($link, htmlspecialchars($row['created_by']))."</td>";
+                            $web_string .= "<td><a href='./assignTrainingTo.php?training_id=".htmlspecialchars($row['training_id'])."' class='btn btn-info' title='Click this button to assign training ".htmlspecialchars($row['training_id'])." to users'>Assign To...</a></td>";
                    
                             echo $web_string; // printing to the web page.
                         }
@@ -105,13 +107,12 @@ session_start();//session is starting
         </form>
         <p>
             <a href="./manager.php" type="reset" class="btn btn-default" value="Back">Back</a>
-            <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
         </p>
-
-
-</body>
-</html>
-
+	</div>
+</div>
+<?php
+include('wrapper/Footer.php');
+?>
 
 
 
