@@ -6,7 +6,6 @@
  *
  *
  */
-
 require_once "./includes/open_conn.inc";
 $username = "";
 $password = "";
