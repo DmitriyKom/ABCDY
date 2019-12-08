@@ -5,6 +5,7 @@
  *	and for sending it to script to add it to DB.
  *
  */
+include('wrapper/Header.php');
 	session_start();//session is starting 
 	//checking if loggedin session is set, and role is Manager, if not rederecting to main page
 	if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
@@ -273,19 +274,18 @@
 	}
 	
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
     <script type="text/javascript" src="./js_scripts/addMoreLinks.js"></script>
-    <meta charset="UTF-8">
     <title>Add New Training</title>
     <link rel="stylesheet" href="./design/bootstrap.css">
     <style type="text/css">
         body {
             font: 14px sans-serif;
             text-align: center;
+            background-image: url("wrapper/Background.jpeg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
         table {
             font-family: arial, sans-serif;
@@ -293,23 +293,35 @@
             width: 75%;
         }
         td, th {
-            border: 1px solid #dddddd;
             text-align: center;
             padding: 8px;
         }
-        tr:nth-child(even) {
-            background-color: #dddddd;
+        .wrapper{
+            background-color: white;
+            margin-left: -17%;
+            width: 50%;
+            overflow: scroll;
+            margin-top: -30px;
+            height: 800px;
+
+            display:block;
         }
+        body{
+            overflow: scroll;
+            height: 100%;
+        }
+
+        @media (Min-height: 800px )  {
+            .wrapper {
+                height: 800px;
+            }
+        }
+
     </style>
-</head>
-<body>
-<div class="page-header">
+<div class="wrapper">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> please Fill all fields for Adding New Training.
     </h1>
-</div>
     <br><br>
-    <div>
-        <!--<form action="./php_scripts/addTrainingToDB.php" method="post" enctype="multipart/form-data">-->
 			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
             <table align="center">
                 <tr>
@@ -322,7 +334,7 @@
                     <td>
                         <div class="form-group <?php echo (!empty($training_title_err)) ? 'has-error' : ''; ?>">
                             <input type="text" name="training_title" class="form-control"
-                                   value="<?php echo htmlspecialchars($training_title); ?>" required="" placeholder="Enter Title for new Training here">
+                                   value="<?php echo htmlspecialchars($training_title); ?>" required="">
                             <span class="help-block"><?php echo $training_title_err; ?></span>
                         </div>
                     </td>
@@ -333,7 +345,7 @@
                     <td>
                         <div class="form-group <?php echo (!empty($training_video_link_err)) ? 'has-error' : ''; ?>">
                             <input type="text" name="training_video_link" class="form-control"
-                                   value="<?php echo $training_video_link; ?>" placeholder="Enter Video Link Here(if you needed), and Click: add this video link button on the right --->">
+                                   value="<?php echo $training_video_link; ?>">
                             <span class="help-block"><?php echo $training_video_link_err; ?></span>
                         </div>
                     </td>
@@ -357,7 +369,7 @@
                     <td>
                         <div class="form-group <?php echo (!empty($training_document_link_err)) ? 'has-error' : ''; ?>">
                             <input type="text" name="training_document_link" class="form-control"
-                                   value="<?php echo $training_document_link; ?>" placeholder="Enter Document Link Here(if you needed), and Click: add this document link button on the right --->">
+                                   value="<?php echo $training_document_link; ?>" >
                             <span class="help-block"><?php echo $training_document_link_err; ?></span>
                         </div>
                     </td>
@@ -403,36 +415,22 @@
                     <td>Training Text</td>
                     <td>
                         <div class="form-group <?php echo (!empty($training_text_err)) ? 'has-error' : ''; ?>">
-	                			<textarea rows="20" cols="100" name="training_text" placeholder="Enter Here Trainig Text. &#13;&#10;Text can be formatted as you want.&#13;&#10;Also you may include any characters or numbers or symbols in here.&#13;&#10;Text will stay formatted as you entered it."><?php echo $training_text; ?></textarea>
+	                			<textarea rows="20" cols="100" name="training_text"><?php echo $training_text; ?></textarea>
                             <span class="help-block"><?php echo $training_text_err; ?></span>
                         </div>
                     </td>
                 </tr>
             </table>
-
             <div class="form-group">
                 <a href="./php_scripts/clearTrainingAddingSessionVariables.php" class="btn btn-default" value="Back">Back</a>
                 <button class="btn btn-primary" name="submit" >Create Training</button>
                 <button class="btn btn-warning" name="reset" >Reset Entered Data</button>
             </div>
         </form>
-
-     <!--	   <div class="" id="message_box">
-    	<textarea rows="1" cols="30" name="output_text">
-	        messages will be shown here        
-	   </textarea>
-        </div> -->
-        <p>
-            <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
-        </p>
-
-
-</body>
-</html>
-
-
-
-
+</div>
+        <?php
+        include('wrapper/Footer.php');
+        ?>
 
 
 

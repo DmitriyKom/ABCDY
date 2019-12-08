@@ -6,69 +6,74 @@
  *
  *
  */
+include('wrapper/Header.php');
 session_start();
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true  ||!isset($_SESSION["role"]) || $_SESSION["role"]!=="HR"){
     header("location: index.php");
     exit;
 }
 ?>
- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
     <title>Welcome</title>
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">-->
 	 <link rel="stylesheet" href="./design/bootstrap.css">
     <style type="text/css">
-        body{ font: 14px sans-serif; text-align: center; }
+        body{ font: 14px sans-serif;
+            text-align: center;
+            background-image: url("wrapper/Background.jpeg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
 		table {
 		  font-family: arial, sans-serif;
 		  border-collapse: collapse;
-		  width: 75%;
 		}
-
-		td, th {
-		  border: 1px solid #dddddd;
-		  text-align: center;
-		  padding: 8px;
-		}
-
-		tr:nth-child(even) {
-		  background-color: #dddddd;
-		}
+        
+        .page-header{
+            background-color: white;
+            margin-left: -10%;
+            width: 40%;
+        }
+        tr {
+            background:gray;
+        }
+        a:hover{
+            text-decoration: none;
+            background-color: lightblue;
+        }
+        .row{
+            color:#000000;
+            margin-top: -100px;
+            text-decoration: none;
+            font-weight:  bold;
+            font-size: 2.5em;
+            line-height: 1.42857143;
+            text-align: center;
+            vertical-align: middle;
+            border-radius: 10px;
+        }
     </style>
-</head>
-<body>
     <div class="page-header">
         <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to the HR Page	.</h1>
 		<br><br>
 		<table align="center">
 		  <tr>
-			<th>Report Name</th>
-			<th>Link To Training</th>
-		  </tr>
-		  <tr>
-			<td>Employees Training Past Due</td>
-			<td> <a href="">Click here to view the report</a> </td>
+			<a href="" class="row" >Employees Training Past Due</a>
 			</tr>
 			<tr>
-			<td>Up Comming Training</td>
-			<td> <a href="">Click here to view the report</a> </td>
+			<a href="" class="row">Up Comming Training</a>
 			</tr>
 			<tr>
-			<td><label>Add New User Into System</label></td>
-			<td> <a href="./register.php"  style="color:red;">Click here to add New User into System.</a> </td>
-			</tr>	
+			<a href="./register.php" class="row">Add New User Into System</a>
+			</tr>
 			<tr>
-			<td><label>Show All Users of System</label></td>
-			<td> <a href="./showAllUsers.php"  style="color:red;">Click here to see All users on System.</a> </td>
+			 <a href="./showAllUsers.php" class="row">Show All Users of System</a>
 			</tr>			
 			
 		</table>
+        <p>
+            <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
+        </p>
     </div>
-    <p>
-        <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
-    </p>
-</body>
-</html>
+<?php
+include('wrapper/Footer.php');
+?>

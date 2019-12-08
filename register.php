@@ -6,6 +6,7 @@
  *
  *
  */
+include('wrapper/Header.php');
 session_start();
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "HR") {
     header("location: index.php");
@@ -238,29 +239,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_close($link);
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
     <title>Sign Up</title>
     <link rel="stylesheet" href="./design/bootstrap.css">
     <style type="text/css">
         body {
             font: 14px sans-serif;
+            background-image: url("wrapper/Background.jpeg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
         }
 
         .wrapper {
-            width: 350px;
             padding: 20px;
-        }
+            background-color: white;
+            margin-left: -10%;
+            width: 40%;
+            overflow: scroll;
+            margin-top: -30px;
+            height: 800px;
     </style>
-</head>
-<body>
 <div class="wrapper">
     <h2>Sign Up</h2>
     <p>Please fill this form to create an account.</p>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <form  action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
             <label>Username</label>
             <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
@@ -286,9 +288,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                    value="<?php echo $confirm_password; ?>">
             <span class="help-block"><?php echo $confirm_password_err; ?></span>
         </div>
-
-
-        <!-- START: Adding by Andrey:----########################################-->
         <div class="form-group <?php echo (!empty($user_firstName_err)) ? 'has-error' : ''; ?>">
             <label>First Name</label>
             <input type="text" name="user_firstName" class="form-control" value="<?php echo $user_firstName; ?>">
@@ -329,8 +328,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="submit" class="btn btn-primary" value="Submit">
             <input type="reset" class="btn btn-default" value="Reset">
         </div>
-      
     </form>
 </div>
-</body>
-</html>
+<?php
+include('wrapper/Footer.php');
+?>
