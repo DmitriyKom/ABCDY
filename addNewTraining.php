@@ -86,17 +86,13 @@ include('wrapper/Header.php');
 		}	
 		$_SESSION['document_links']= $arr_document_links;		
 	}
-	
-	
-	
+
 	if(isset($_SESSION['local_documents'])){ //checking if local uploaded document array session is set
 		$arr_documents = $_SESSION['local_documents'];
 	}else{
 		$arr_documents = array();
 	}
-	
-	
-	
+
 	//Handling add more documents
 	if(isset($_POST['add_more_documents']) && isset($_FILES['file_training_document']['name']) && trim($_FILES['file_training_document']['name'])!==""){
 
@@ -113,8 +109,6 @@ include('wrapper/Header.php');
 		$_SESSION['local_documents'] = $arr_documents;	
 
 	}
-	
-
 	if(isset($_POST['training_text'])){ // checking if training text been entered
 		$training_text = sanitizeString($_POST['training_text']);
 		$_SESSION['text'] = $training_text;
@@ -298,11 +292,11 @@ include('wrapper/Header.php');
         }
         .wrapper{
             background-color: white;
-            margin-left: -17%;
-            width: 50%;
+            margin-left: -20%;
+            width: 1000px;
             overflow: scroll;
-            margin-top: -30px;
-            height: 800px;
+            margin-top: -25px;
+            height: 600px;
 
             display:block;
         }
@@ -313,7 +307,7 @@ include('wrapper/Header.php');
 
         @media (Min-height: 800px )  {
             .wrapper {
-                height: 800px;
+                height: 700px;
             }
         }
 

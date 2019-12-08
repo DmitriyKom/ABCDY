@@ -57,11 +57,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true  ||!isset($_S
 		<br><br>
 		<table align="center">
 		  <tr>
-			<a href="" class="row" >Employees Training Past Due</a>
-			</tr>
-			<tr>
-			<a href="" class="row">Up Comming Training</a>
-			</tr>
 			<tr>
 			<a href="./register.php" class="row">Add New User Into System</a>
 			</tr>

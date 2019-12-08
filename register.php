@@ -253,11 +253,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .wrapper {
             padding: 20px;
             background-color: white;
-            margin-left: -10%;
-            width: 40%;
+            margin-left: -17%;
+            width: 800px;
             overflow: scroll;
             margin-top: -30px;
-            height: 800px;
+            height: 700px;
     </style>
 <div class="wrapper">
     <h2>Sign Up</h2>

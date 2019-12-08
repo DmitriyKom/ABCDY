@@ -13,6 +13,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_
     header("location: index.php");
     exit;
 }
+if (isset($_SESSION["Test_Question"])){
+    unset($_SESSION["Test_Question"]);
+}
 ?>
     <title>Welcome</title>
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">-->

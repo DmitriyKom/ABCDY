@@ -15,7 +15,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_
 }
 if(isset($_POST['Add'])){
     add_row();
-    
+   
 }
 if(isset($_POST['Submit'])){
     submit();
@@ -30,18 +30,35 @@ if(isset($_POST['Back'])){
 }
 function add_row()
 {
-    $_SESSION["Test_Question"]++;
+    if (isset($_SESSION["Test_Question"])) {
+        $_SESSION["Test_Question"]++;
+    }
+    else {
+        $_SESSION["Test_Question"] = 1;
+        
+    }
 }
 function submit( )
 {
+    //Notice: Array to string conversion in C:\xampp\htdocs\ABCDY-master\addNewTest.php on line 39
 
 }
-$testQuestion = $_SESSION["Test_Question"];
+ if(!isset($_SESSION["Test_Question"])){
+        $testQuestion =1;
+        $_SESSION["Test_Question"] = $testQuestion;
+    }
+    else {
+        $testQuestion = $_SESSION["Test_Question"];
+    }
+
+
 $answer = null;
 $answer1 = null;
 $answer2 = null;
 $answer3 = null;
 $question = null;
+
+
 ?>
     <script type="text/javascript" src="./js_scripts/addMoreLinks.js"></script>
     <title>Add New Training</title>
@@ -102,7 +119,7 @@ $question = null;
             margin-top: -30px;
             display:block;
             overflow: scroll;
-            height: 800px;
+            height: 650px;
             display:block;
         }
     </style>
@@ -111,31 +128,114 @@ $question = null;
     </h1>
 
         <form action="addNewTest.php" method="post">
-            <div >
+           
+            <div  class = 'title' id='question'>Test Title
+                <br>
                 <?php
-                if(!isset($testQuestion)){
-                    $testQuestion = 1;
-                    $_SESSION["Test_Question"] = $testQuestion;
+                if(isset($_POST['test_title'])) {
+                    $title = $_POST['test_title'];
                 }
-                for($x = 0; $x<$testQuestion; $x++){
-                    echo "<div  id='mainbox'>";
+                else
+                    $title = "";
+                ?>
+                <input type='text' name='test_title' id='quest' class='inbox' value='<?php echo htmlspecialchars($title) ?>'>
+            </div>
+            <br><br><br><br><br><br><br><br>
+            <div >
+                    <?php
+                      echo "<div  id='mainbox'>";
                         echo "<div class = 'title' id='question'>";
-                            echo "Test Question ";
+                            echo "Test Question 1";
                             echo "<br>";
-                            echo "<input type='text' name='test_".$x."' id='quest' class='inbox'>";
+                            if(isset($_POST['ques_0']) ) {
+                                $question =  $_POST['ques_0'];
+                            }
+                            else
+                            $question = "";
+                            echo "<input type='text' name='ques_0' id='quest' class='inbox' value='".htmlspecialchars($question)."'>";
+                            
                         echo "</div>";
                         echo "<div class='title' id='answer'>";
                             echo "Correct answer";
                             echo "<br>";
-                            echo "<input type='text' name='test_".$x."'  class='inbox'>";
+                            if(isset($_POST['ans_0']) ) {
+                                $answer =  $_POST['ans_0'];
+                            }
+                            else
+                                $answer = "";
+                            echo "<input type='text' name='ans_0' class='inbox' value='".htmlspecialchars($answer)."'>";
                         echo "</div>";
                             echo "<br>";
                         echo "<div class='title' id='answer'>";
                             echo "Other possible choices";
                             echo "<br>";
-                            echo "<input type='text' name='test_".$x."' class='inbox'>";
-                            echo "<input type='text' name='test_".$x."' class='inbox'>";
-                            echo "<input type='text' name='test_".$x."' class='inbox'>";
+                            if(isset($_POST['wrong1_0']) ) {
+                                $wrong1 =  $_POST['wrong1_0'];
+                            }
+                            else
+                                $wrong1 = "";
+                            if(isset($_POST['wrong2_0']) ) {
+                                $wrong2 = $_POST['wrong2_0'];
+                            }
+                            else
+                                $wrong2 = "";
+                            if(isset($_POST['wrong3_0']) ) {
+                                $wrong3 = $_POST['wrong3_0'];
+                            }
+                            else
+                                $wrong3 = "";
+                            echo "<input type='text' name='wrong1_0' class='inbox' value='".htmlspecialchars($wrong1)."'>";
+                            echo "<input type='text' name='wrong2_0' class='inbox' value='".htmlspecialchars($wrong2)."'>";
+                            echo "<input type='text' name='wrong3_0' class='inbox' value='".htmlspecialchars($wrong3)."'>";
+                        echo "</div>";
+                    echo "</div>";
+                for($x = 1; $x<$testQuestion; $x++){
+                    $number = $x + 1;
+                    echo "<div  id='mainbox'>";
+                        echo "<div class = 'title' id='question'>";
+                            echo "Test Question ".$number;
+                            echo "<br>";
+                            if(isset($_POST['ques_'.$x]) ) {
+                                $question =  $_POST['ques_'.$x];
+                            }
+                            else
+                            $question = "";
+                            echo "<input type='text' name='ques_".$x."' id='quest' class='inbox' value='".htmlspecialchars($question)."'>";
+                            
+                        echo "</div>";
+                        echo "<div class='title' id='answer'>";
+                            echo "Correct answer";
+                            echo "<br>";
+
+                            if(isset($_POST['ans_'.$x])) {
+                                $answer =$_POST['ans_'.$x];
+                            }
+                            else   {
+                                $answer = "";}
+                            echo "<input type='text' name='ans_".$x."' class='inbox' value='".htmlspecialchars($answer)."'>";
+                        echo "</div>";
+                            echo "<br>";
+                        echo "<div class='title' id='answer'>";
+                            echo "Other possible choices";
+                            echo "<br>";
+                            if(isset($_POST['wrong1_'.$x]) ) {
+                                $wrong1 =  $_POST['wrong1_'.$x];
+                            }
+                            else
+                                $wrong1 = "";
+                            if(isset($_POST['wrong2_'.$x]) ) {
+                                $wrong2 = $_POST['wrong2_'.$x];
+                            }
+                            else
+                                $wrong2 = "";
+                            if(isset($_POST['wrong3_'.$x]) ) {
+                                $wrong3 = $_POST['wrong3_'.$x];
+                            }
+                            else
+                                $wrong3 = "";
+                    echo "<input type='text' name='wrong1_".$x."' class='inbox' value='".htmlspecialchars($wrong1)."'>";
+                    echo "<input type='text' name='wrong2_".$x."' class='inbox' value='".htmlspecialchars($wrong2)."'>";
+                    echo "<input type='text' name='wrong3_".$x."' class='inbox' value='".htmlspecialchars($wrong3)."'>";
                         echo "</div>";
                     echo "</div>";
                 }
@@ -145,8 +245,11 @@ $question = null;
                 <input type="Submit" class="btn btn-default" name = "Reset" value="Reset" style="color: red;">
                 <input  type="Submit" name = "Submit"class="btn btn-default" >
                 <a href="./manager.php" type="reset" class="btn btn-default" value="Back">Back</a>
-                
+               <?php  print_r($_POST); ?>
+              
             </div>
+            
+
         </form>
 </div>
 

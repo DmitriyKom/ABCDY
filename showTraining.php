@@ -106,14 +106,17 @@ if ($_GET) {
             text-align: center;
             padding: 8px;
         }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-        #wrapper{
-            background-color: white;
-        }
         
+        .page-header{
+            background-color: white;
+            margin-left: -17%;
+            width: 1000px;
+            margin-top: -30px;
+            display:block;
+            overflow: scroll;
+            height: 600px;
+            display:block;
+        }
     </style>
 </head>
 <body>
