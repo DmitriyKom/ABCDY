@@ -39,11 +39,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_
         }
         .page-header{
             background-color: white;
-            margin-left: -10%;
-            width: 40%;
+            margin-left: -17%;
+            width: 900px;
             overflow: scroll;
             margin-top: -30px;
-            height: 800px;
+            height: 700px;
         }
     </style>
 <div class="page-header">
