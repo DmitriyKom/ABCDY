@@ -1,8 +1,12 @@
 <?php
+/* Date         Name            Changes
+ * 10/27/2019   Andrey          Coding page
+ *
+ *
+ *
+ */
 
-
-
-
+include('wrapper/Header.php');
 session_start();//session is starting
 //checking if loggedin session is set, and role is Manager, if not rederecting to main page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
@@ -79,17 +83,18 @@ if ($_GET) {
     include_once("./includes/close_conn.inc");
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+
     <title>Training Description</title>
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">-->
     <link rel="stylesheet" href="./design/bootstrap.css">
     <style type="text/css">
         body {
             font: 14px sans-serif;
             text-align: center;
+            background-image: url("wrapper/Background.jpeg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
         table {
             font-family: arial, sans-serif;
@@ -105,6 +110,10 @@ if ($_GET) {
         tr:nth-child(even) {
             background-color: #dddddd;
         }
+        #wrapper{
+            background-color: white;
+        }
+        
     </style>
 </head>
 <body>
@@ -121,5 +130,6 @@ if ($_GET) {
         </p>
         
    </div>
-</body>
-</html>
+<?php
+include('wrapper/Footer.php');
+?>

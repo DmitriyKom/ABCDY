@@ -5,7 +5,7 @@
  *
  *
  */
-
+include('wrapper/Header.php');
 	session_start();//session is starting
 	//checking if loggedin session is set, and role is Manager, if not rederecting to main page
 	if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
@@ -38,11 +38,7 @@
 		return $answr;
 	}
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
     <script type="text/javascript" src="./js_scripts/addMoreLinks.js"></script>
-    <meta charset="UTF-8">
     <title>Trainings</title>
 
     <link rel="stylesheet" href="./design/bootstrap.css">
@@ -50,29 +46,33 @@
         body {
             font: 14px sans-serif;
             text-align: center;
+            background-image: url("wrapper/Background.jpeg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
-            width: 75%;
+            width: 95%;
         }
 
         td, th {
-            border: 1px solid #dddddd;
             text-align: center;
             padding: 8px;
         }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
+        
+        .page-header{
+                background-color: white;
+                margin-left: -10%;
+                width: 40%;
+                text-decoration: none;
+            }
     </style>
-</head>
-<body>
 <div class="page-header">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> here you will be able to see all assigned trainings.</h1>
-</div>
     <br><br>
     <div>
         <form action="./php_scripts/NONE.php" method="get">
@@ -111,12 +111,12 @@
         </form>
         <p>
             <a href="./manager.php" type="reset" class="btn btn-default" value="Back">Back</a>
-            <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
         </p>
 	</div>
-
-</body>
-</html>
+</div>
+<?php
+include('wrapper/Footer.php');
+?>
 
 
 
