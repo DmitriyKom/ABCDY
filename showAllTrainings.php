@@ -53,8 +53,11 @@ session_start();//session is starting
         .page-header{
             background-color: white;
             margin-left: -10%;
-            width: 40%;
+            width: 600px;
             text-decoration: none;
+            height: 650px;
+            display: block;
+            overflow: auto;
         }
         
     </style>

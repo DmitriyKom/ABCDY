@@ -44,8 +44,10 @@ if (isset($_SESSION["Test_Question"])){
         .page-header{
             background-color: white;
             margin-left: -10%;
-            width: 40%;
+            width: 600px;
             text-decoration: none;
+            height: 650px;
+            overflow: auto;
         }
         a:hover{
             text-decoration: none;
@@ -53,34 +55,34 @@ if (isset($_SESSION["Test_Question"])){
         }
         .row{
             color:#000000;
-            margin-top: -100px;
             text-decoration: none;
             font-weight:  bold;
             font-size: 2.5em;
-            line-height: 1.42857143;
             text-align: center;
             vertical-align: middle;
-            border-radius: 10px;
+            padding-bottom: -100px;
+            display: block;
         }
+
     </style>
 <div class="page-header">
-    <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to the Manager Portal.</h1>
-    <br><br>
-    <table align="center">
-        <tr>
-           <a href="./showAllTrainings.php" class="row">Show All Trainings</a>
-        </tr>
-        <tr>
-            <a href="./showAllAssignedTrainings.php" class="row">Show All Assigned Trainings</a>
-        </tr>
-        <tr>
-            <a href="./addNewTraining.php" class="row">Create New Training</a>
-        </tr>
-			<tr>
-            <a href="./addNewTest.php" class="row">Create New Test</a>
-        </tr>
-
-    </table>
+    <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?>
+            <br>
+        </b>. Welcome to the Manager Portal.</h1>
+    <br>
+    <br>
+    <br>
+    <a href="./showAllTrainings.php" class="row">Show All Trainings</a></li>
+    <br>
+    <a href="./showAllAssignedTrainings.php" class="row">Show All Assigned Trainings</a></li>
+    <br>
+    <a href="./ShowAllTest.php" class="row">Show All Tests</a></li>
+    <br>
+    <a href="./showAllAssignedTest.php" class="row">Show All Assigned Tests</a>
+    <br>
+    <a href="./addNewTraining.php" class="row">Create New Training</a>
+    <br>
+    <a href="./addNewTest.php" class="row">Create New Test</a>
     <br>
     <p>
         <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>

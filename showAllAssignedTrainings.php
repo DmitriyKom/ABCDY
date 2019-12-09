@@ -66,9 +66,11 @@ include('wrapper/Header.php');
         
         .page-header{
                 background-color: white;
-                margin-left: -10%;
-                width: 40%;
+                margin-left: -13%;
+                width: 700px;
                 text-decoration: none;
+                overflow: auto;
+                height: 650px;
             }
     </style>
 <div class="page-header">
@@ -87,7 +89,7 @@ include('wrapper/Header.php');
                 </tr>
 					<?php 
 					  include_once("./includes/open_conn.inc"); //opening connection to db
-					  $select_query = "SELECT * FROM training_assigned";
+					  $select_query = "SELECT * FROM training_assigned where training_id is not NULL";
 					  if ($res = mysqli_query($link, $select_query)) {
                     if (mysqli_num_rows($res) > 0) {
                         while ($row = mysqli_fetch_array($res)) {

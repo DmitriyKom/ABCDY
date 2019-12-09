@@ -54,12 +54,11 @@ function getTrainingName($training_id, $link)
     .page-header {
         background-color: white;
         margin-left: -10%;
-        width: 40%;
+        width: 700px;
         margin-top: -30px;
         display: block;
         overflow: auto;
-        height: 800px;
-        display: block;
+        height: 600px;
     }
 </style>
 <div class="page-header">
