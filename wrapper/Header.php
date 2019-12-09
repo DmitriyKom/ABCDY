@@ -41,7 +41,7 @@
 </head>
 <body>
 <div id="Banner">
-    <div id="Logo">ABCDY</div
+    <div id="Logo">ABCDY</div>
 </div>
 
 <div id="Main">
