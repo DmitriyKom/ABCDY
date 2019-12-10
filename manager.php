@@ -7,7 +7,7 @@
  *
  *
  */
-include('wrapper/Header.php');
+//include('wrapper/Header.php');
 session_start();
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
     header("location: index.php");
@@ -17,6 +17,9 @@ if (isset($_SESSION["Test_Question"])){
     unset($_SESSION["Test_Question"]);
 }
 ?>
+<!DOCTYPE html>
+<html>
+<head>
     <title>Welcome</title>
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">-->
     <link rel="stylesheet" href="./design/bootstrap.css">
@@ -43,11 +46,9 @@ if (isset($_SESSION["Test_Question"])){
         }
         .page-header{
             background-color: white;
-            margin-left: -10%;
-            width: 600px;
             text-decoration: none;
-            height: 650px;
-            overflow: auto;
+            opacity: 70%;
+       
         }
         a:hover{
             text-decoration: none;
@@ -63,12 +64,36 @@ if (isset($_SESSION["Test_Question"])){
             padding-bottom: -100px;
             display: block;
         }
+		  #Banner{
+				margin-left: auto;
+  				margin-right: auto;
+            width: 100%;
+            height: 130px;
+            background-color: whitesmoke;
+				text-align: center;
+        }
+        #Logo{
 
+            margin-left: auto;
+  				margin-right: auto;
+            width:100px;
+            height: 100px;
+            margin-top: 10px;
+            text-align: center;
+            font-size: 7em;
+            font-family: "Brush Script MT";
+        }
     </style>
+</head> 
+<body>   
+<div id="Banner">
+    <div id="Logo">ABCDY</div>
+</div>
 <div class="page-header">
-    <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?>
-            <br>
-        </b>. Welcome to the Manager Portal.</h1>
+    <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?>.
+           <br>
+        </b> Welcome to the Manager Portal.</h1>
+</div> 
     <br>
     <br>
     <br>
@@ -87,7 +112,7 @@ if (isset($_SESSION["Test_Question"])){
     <p>
         <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
     </p>
-</div>
+
 <?php
 include('wrapper/Footer.php');
 ?>
