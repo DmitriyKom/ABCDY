@@ -9,18 +9,16 @@
             width: 100%;
             height: 130px;
             background-color: whitesmoke;
-            display:block;
-       
+            display:block;   
             float: left;
             margin: 0;
             padding: 0;
+            color: black;
+           
         }
-         #Logo{
-            float:left;
-            width:100px;
+         #Logo{                   
             height: 100px;
             margin-top: 10px;
-            margin-left: 40%;
             text-align: center;
             font-size: 7em;
             font-family: "Brush Script MT";
@@ -50,19 +48,21 @@
         }
 
         tr:nth-child(even) {
-            background-color: #dddddd;
-				opacity: 0.7;
+            background-color: lightgreen;
+				opacity: 0.6;
         }
         tr:nth-child(odd) {
-            background-color: white;
-				opacity: 0.7;
+            background-color: lightblue;
+				opacity: 0.6;
         }
         .page-header{
             background-color: whitesmoke;
             text-decoration: none;
             opacity: 0.5;
         }
-
+		 a {
+					 
+		 }
         a:hover{
             text-decoration: none;
             background-color: lightblue;
