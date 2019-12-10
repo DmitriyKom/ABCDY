@@ -289,7 +289,7 @@
                     <td>
                         <div class="form-group <?php echo (!empty($training_title_err)) ? 'has-error' : ''; ?>">
                             <input type="text" name="training_title" class="form-control"
-                                   value="<?php echo htmlspecialchars($training_title); ?>" required="">
+                                   value="<?php echo htmlspecialchars($training_title); ?>" required="" placeholder="Enter Title for new Training here">
                             <span class="help-block"><?php echo $training_title_err; ?></span>
                         </div>
                     </td>
@@ -300,7 +300,7 @@
                     <td>
                         <div class="form-group <?php echo (!empty($training_video_link_err)) ? 'has-error' : ''; ?>">
                             <input type="text" name="training_video_link" class="form-control"
-                                   value="<?php echo $training_video_link; ?>">
+                                   value="<?php echo $training_video_link; ?>" placeholder="Enter Video Link Here(if you needed), and Click: add this video link button on the right --->">
                             <span class="help-block"><?php echo $training_video_link_err; ?></span>
                         </div>
                     </td>
@@ -324,7 +324,7 @@
                     <td>
                         <div class="form-group <?php echo (!empty($training_document_link_err)) ? 'has-error' : ''; ?>">
                             <input type="text" name="training_document_link" class="form-control"
-                                   value="<?php echo $training_document_link; ?>" >
+                                   value="<?php echo $training_document_link; ?>"  placeholder="Enter Document Link Here(if you needed), and Click: add this document link button on the right --->">
                             <span class="help-block"><?php echo $training_document_link_err; ?></span>
                         </div>
                     </td>
@@ -370,7 +370,7 @@
                     <td>Training Text</td>
                     <td>
                         <div class="form-group <?php echo (!empty($training_text_err)) ? 'has-error' : ''; ?>">
-	                			<textarea rows="20" cols="100" name="training_text"><?php echo $training_text; ?></textarea>
+	                			<textarea rows="20" cols="100" name="training_text" placeholder="Enter Here Trainig Text. &#13;&#10;Text can be formatted as you want.&#13;&#10;Also you may include any characters or numbers or symbols in here.&#13;&#10;Text will stay formatted as you entered it."><?php echo $training_text; ?></textarea>
                             <span class="help-block"><?php echo $training_text_err; ?></span>
                         </div>
                     </td>
