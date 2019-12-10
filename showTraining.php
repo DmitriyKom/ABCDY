@@ -6,7 +6,7 @@
  *
  */
 
-include('wrapper/Header.php');
+//include('wrapper/Header.php');
 session_start();//session is starting
 //checking if loggedin session is set, and role is Manager, if not rederecting to main page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
@@ -88,13 +88,18 @@ if ($_GET) {
     <link rel="stylesheet" href="./design/bootstrap.css">
     <style type="text/css">
         body {
-            font: 14px sans-serif;
-            text-align: center;
+            font: 14px sans-serif;   
             background-image: url("wrapper/Background.jpeg");
             background-repeat: no-repeat;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+        }
+       
+        
+  		  body {
+            font: 14px sans-serif;
+            text-align: center;
         }
         table {
             font-family: arial, sans-serif;
@@ -106,16 +111,9 @@ if ($_GET) {
             text-align: center;
             padding: 8px;
         }
-        
-        .page-header{
-            background-color: white;
-            margin-left: -17%;
-            width: 1000px;
-            margin-top: -30px;
-            display:block;
-            overflow: scroll;
-            height: 600px;
-            display:block;
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
         }
     </style>
 </head>
@@ -132,7 +130,6 @@ if ($_GET) {
             <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
         </p>
         
-   </div>
-<?php
-include('wrapper/Footer.php');
-?>
+	</div>
+</body>
+</html>

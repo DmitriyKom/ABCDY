@@ -1,7 +1,9 @@
 <?php
 /* Date         Name            Changes
+ *  9/28/2019   Charles         initial coding
  * 10/27/2019   Andrey          Coding page
  * 10/28/2019   Dmitriy         Code Cleanup
+ * 12/10/2019   Andrey          Some rewritings
  *
  *
  *
@@ -15,29 +17,35 @@ $role = "";
 $username_err = "";
 $password_err = "";
 $enabled = b'0';
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(empty(trim($_POST["username"]))){
-        $username_err = "Please enter username.";
-    } else{
-        $username = trim($_POST["username"]);
-    }
-    if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter your password.";
-    } else{
-        $password = trim($_POST["password"]);
-    }
-    if(empty($username_err) && empty($password_err)){
-        $sql = "SELECT id, username, password, role, enabled FROM users WHERE username = ?";
-        if($stmt = mysqli_prepare($link, $sql)){
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
-            $param_username = $username;
-            if(mysqli_stmt_execute($stmt)){
-                mysqli_stmt_store_result($stmt);
-                if(mysqli_stmt_num_rows($stmt) == 1){                    
-                    mysqli_stmt_bind_result($stmt, $user_id, $username, $hashed_password, $role,$enabled);
-                    if(mysqli_stmt_fetch($stmt)){
-                        if(password_verify($password, $hashed_password)){
-                        	if($enabled==b'1'){ // checking if users account is not disabled
+$user_id = -1;
+	if($_SERVER["REQUEST_METHOD"] == "POST"){
+	    if(empty(trim($_POST["username"]))){
+	        $username_err = "Please enter username.";
+	    } else{
+	        $username = trim($_POST["username"]);
+	    }
+	    if(empty(trim($_POST["password"]))){
+	        $password_err = "Please enter password.";
+	    } else{
+	        $password = trim($_POST["password"]);
+	    }
+	    
+	    
+	    if(trim($username_err)=="" && trim($password_err)==""){
+	        $select_query = "SELECT id, username, password, role, enabled FROM users WHERE username='" .mysqli_real_escape_string($link, $username)."'";
+	       // echo $select_query;
+	       
+	        if ($res = mysqli_query($link, $select_query)) {
+              if (mysqli_num_rows($res) > 0) {
+                  while ($row = mysqli_fetch_array($res)) {
+							$enabled = $row['enabled'];                  	
+                  	$username = $row['username'];
+							$password = $row['password'];
+							$role = $row['role'];
+                  	$user_id = $row['id'];
+                  	
+                  	
+                  	if($enabled==b'1'){ // checking if users account is not disabled
                         		changeLastLogInTime($user_id, $link);
 	                           session_start();
 	                           $_SESSION["loggedin"] = true;
@@ -59,27 +67,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 												break;
 										}
 									}
-									
-							} else{
-								$password_err = "The password you entered was not valid.";
-						}
-                    }
-                } else{
-                    $username_err = "No account found with that username.";
-                }
-            } else{
-                echo "Oops! Something went wrong. Please try again later.";
-            }
-        }
-        mysqli_stmt_close($stmt);
-    }
-    mysqli_close($link);
-}
+                  }
+              }else {
+               //echo "No matching records are found.";
+           	  }
+          } else {
+              echo "ERROR: Could not able to execute query: "
+                        . mysqli_error($link);
+                    
+               return false;
+          }
+	       
+	       
+	       
+	    }   
+             
+	  
+	}
 
 	function changeLastLogInTime($u_id, $link){
 		$update_query = "UPDATE users SET last_login=CURRENT_TIMESTAMP WHERE id=".$u_id."";
 		mysqli_query($link, $update_query);
 	}
+	include_once("./includes/close_conn.inc"); //closing connection to db
 ?>
     <title>Login</title>
     <link rel="stylesheet" href="./design/bootstrap.css">
