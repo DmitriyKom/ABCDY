@@ -47,12 +47,20 @@
            
         }
 
-        tr:nth-child(even) {
-            background-color: lightgreen;
+        /*tr:nth-child(even) {
+            background-color: white;
 				opacity: 0.6;
         }
         tr:nth-child(odd) {
-            background-color: lightblue;
+            background-color: #dddddd;
+				opacity: 0.6;
+        }*/
+		  tr:nth-child(even) {
+            background-color: #8A90FF;
+				opacity: 0.6;
+        }
+        tr:nth-child(odd) {
+            background-color: #dddddd;
 				opacity: 0.6;
         }
         .page-header{
@@ -60,9 +68,9 @@
             text-decoration: none;
             opacity: 0.5;
         }
-		 a {
-					 
-		 }
+        a{
+				color: red;        
+        }
         a:hover{
             text-decoration: none;
             background-color: lightblue;
