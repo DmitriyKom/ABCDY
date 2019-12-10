@@ -83,41 +83,12 @@ if ($_GET) {
     include_once("./includes/close_conn.inc");
 }
 ?>
-
+<?php include('wrapper/Header.php'); ?>
     <title>Training Description</title>
-    <link rel="stylesheet" href="./design/bootstrap.css">
-    <style type="text/css">
-        body {
-            font: 14px sans-serif;   
-            background-image: url("wrapper/Background.jpeg");
-            background-repeat: no-repeat;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-       
-        
-  		  body {
-            font: 14px sans-serif;
-            text-align: center;
-        }
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 75%;
-        }
-        td, th {
-            border: 1px solid #dddddd;
-            text-align: center;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-    </style>
+   
 </head>
 <body>
+<?php include('wrapper/Logo.php'); ?>
 <div class="page-header">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> here you able to See Info About Training.</h1>
 </div>

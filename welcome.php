@@ -8,7 +8,7 @@
  *
  *
  */
-include('wrapper/Header.php');
+
 	// Initialize the session
 	session_start();
 	
@@ -30,47 +30,16 @@ include('wrapper/Header.php');
 		return $answr;
 	}
 ?>
+
+<?php include('wrapper/Header.php'); ?>
     <title>Welcome Trainee</title>
-    <link rel="stylesheet" href="./design/bootstrap.css">
-    <style type="text/css">
-        body {
-            font: 14px sans-serif;
-            text-align: center;
-            background-image: url("wrapper/Background.jpeg");
-            background-repeat: no-repeat;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 75%;
-        }
-
-        td, th {
-            text-align: center;
-            padding: 8px;
-        }
-
-        .page-header{
-            background-color: white;
-            margin-left: -17%;
-            width: 60%;
-            margin-top: -30px;
-            display:block;
-            overflow: scroll;
-            height: 800px;
-            display:block;
-        }
-        
-    </style>
+    
 </head>
 <body>
+<?php include('wrapper/Logo.php'); ?>
 <div class="page-header">
     <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to the training site.</h1>
-    <br><br>
+ </div>   <br><br>
     <table align="center">
         <tr>
             <th>Training Completed?</th>

@@ -5,7 +5,7 @@
  *
  *
  */
-//include('wrapper/Header.php');
+//
 	session_start();//session is starting
 	//checking if loggedin session is set, and role is Manager, if not rederecting to main page
 	if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
@@ -37,85 +37,20 @@
       }
 		return $answr;
 	}
+	
+	
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
+
+<?php include('wrapper/Header.php'); ?>
+
+    
     <title>Trainings</title>
-
-    <link rel="stylesheet" href="./design/bootstrap.css">
-    <style type="text/css">
- 			#Banner{
-            width: 100%;
-            height: 130px;
-            background-color: whitesmoke;
-            display:block;
-       
-            float: left;
-            margin: 0;
-            padding: 0;
-        }
-         #Logo{
-            float:left;
-            width:100px;
-            height: 100px;
-            margin-top: 10px;
-            margin-left: 40%;
-            text-align: center;
-            font-size: 7em;
-            font-family: "Brush Script MT";
-        }
-        body {
-            font: 14px sans-serif;
-            text-align: center;
-            background-image: url("wrapper/Background.jpeg");
-            background-repeat: no-repeat;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 95%;
-        }
-
-        td, th {
-            border: 1px solid #dddddd;
-            text-align: center;
-            padding: 8px;
-            color: black;
-           
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-				opacity: 0.6;
-        }
-        tr:nth-child(odd) {
-            background-color: white;
-				opacity: 0.7;
-        }
-        .page-header{
-                background-color: whitesmoke;
-                text-decoration: none;
-                opacity: 0.5;
-                
- 
-        }
-        
-            
-            
-    </style>
  </head>
  <body>   
-<div id="Banner">
-    <div id="Logo">ABCDY</div>
-</div>
-<div class="page-header">
-    <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> here you will be able to see all assigned trainings.</h1>
+<?php include('wrapper/Logo.php'); ?>
+	<div class="page-header">
+    <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>, this is all assigned and completed trainings on system:</h1>
     <br><br>
 </div>    
 <div>
@@ -159,7 +94,7 @@
 
 
 <?php
-include('wrapper/Footer.php');
+	include('wrapper/Footer.php');
 ?>
 
 

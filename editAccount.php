@@ -77,38 +77,15 @@ if ($_GET) {
     include_once("./includes/close_conn.inc");
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<?php include('wrapper/Header.php'); ?>
     <title>Edit User Account</title>
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">-->
-    <link rel="stylesheet" href="./design/bootstrap.css">
-    <style type="text/css">
-        body {
-            font: 14px sans-serif;
-            text-align: center;
-        }
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 75%;
-        }
-        td, th {
-            border: 1px solid #dddddd;
-            text-align: center;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-    </style>
+   
 </head>
 <body>
+<?php include('wrapper/Logo.php'); ?>
 <div class="page-header">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> please make needed changes.</h1>
-    <br><br>
+</div>    <br><br>
     <div>
         <form action="./php_scripts/editUsersInfoInDB.php" method="post">
 
@@ -228,5 +205,6 @@ if ($_GET) {
             <a href="./showAllUsers.php" type="reset" class="btn btn-default" value="Back">Back</a>
             <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
         </p>
+     </div>
 </body>
 </html>

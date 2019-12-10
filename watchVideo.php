@@ -6,7 +6,7 @@
  *
  *
  */
-include('wrapper/Header.php');
+
 // Initialize the session
 session_start();
 
@@ -39,32 +39,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	
 	}
 ?>
-    <meta charset="UTF-8">
-    <title>ForkLift Training</title>
-	 <link rel="stylesheet" href="./design/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif;
-            text-align: center;
-            background-image: url("wrapper/Background.jpeg");
-            background-repeat: no-repeat;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        .page-header{
-            background-color: white;
-            margin-left: -17%;
-            width: 60%;
-            margin-top: -30px;
-            display:block;
-            overflow: scroll;
-            height: 800px;
-        }
-    </style>
-
+    <?php include('wrapper/Header.php'); ?>
+    <title>Training</title>
+	 </head>
+	<body>
     <div class="page-header">
         <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to for <?php echo getTrainingName($_GET['training_id']);?> training Video.</h1>
-		<br><br>
+	</div>	<br><br>
+	
+	<div>
 		 <iframe width="560" height="315" src="<?php echo getEmbedVideoLink(htmlspecialchars($_GET['video_link'])); ?>" >
 		</iframe>
     <br>

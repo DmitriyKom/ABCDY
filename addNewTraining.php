@@ -5,7 +5,7 @@
  *	and for sending it to script to add it to DB.
  *
  */
-include('wrapper/Header.php');
+
 	session_start();//session is starting 
 	//checking if loggedin session is set, and role is Manager, if not rederecting to main page
 	if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
@@ -268,54 +268,15 @@ include('wrapper/Header.php');
 	}
 	
 ?>
-    <script type="text/javascript" src="./js_scripts/addMoreLinks.js"></script>
+    <?php include('wrapper/Header.php'); ?>
     <title>Add New Training</title>
-    <link rel="stylesheet" href="./design/bootstrap.css">
-    <style type="text/css">
-        body {
-            font: 14px sans-serif;
-            text-align: center;
-            background-image: url("wrapper/Background.jpeg");
-            background-repeat: no-repeat;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 75%;
-        }
-        td, th {
-            text-align: center;
-            padding: 8px;
-        }
-        .wrapper{
-            background-color: white;
-            margin-left: -20%;
-            width: 1000px;
-            overflow: scroll;
-            margin-top: -25px;
-            height: 600px;
-
-            display:block;
-        }
-        body{
-            overflow: scroll;
-            height: 100%;
-        }
-
-        @media (Min-height: 800px )  {
-            .wrapper {
-                height: 700px;
-            }
-        }
-
-    </style>
-<div class="wrapper">
-    <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> please Fill all fields for Adding New Training.
+    </head>
+    <body>
+    <?php include('wrapper/Logo.php'); ?>
+<div class="page-header">
+    <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>, please Fill all fields for Adding New Training.
     </h1>
-    <br><br>
+ </div>   <br><br>
 			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
             <table align="center">
                 <tr>

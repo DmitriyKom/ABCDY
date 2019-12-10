@@ -8,7 +8,7 @@
  *
  *
  */
-include('wrapper/Header.php');
+
 session_start();
 require_once "./includes/open_conn.inc";
 $username = "";
@@ -91,22 +91,11 @@ $user_id = -1;
 	}
 	include_once("./includes/close_conn.inc"); //closing connection to db
 ?>
+	<?php include('./wrapper/Header.php'); ?>
     <title>Login</title>
-    <link rel="stylesheet" href="./design/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif;
-            background-image: url("wrapper/Background.jpeg");
-            background-repeat: no-repeat;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        #wrapper{
-            background-color: white;
-        }
-        
-        .wrapper{ width: 350px; padding: 20px; background-color: white; }
-    </style>
+	</head>    
+    <body>
+	<?php include('./wrapper/Logo.php'); ?>
     <div class="wrapper">
         <h2>Login</h2>
         <p>Please fill in your credentials to login.</p>

@@ -5,7 +5,6 @@
  *
  *
  */
-include('wrapper/Header.php');
 session_start();//session is starting
 //checking if loggedin session is set, and role is Manager, if not rederecting to main page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
@@ -31,42 +30,17 @@ function getTrainingName($training_id, $link)
 
 
 ?>
-<script type="text/javascript" src="./js_scripts/addMoreLinks.js"></script>
+<?php include('wrapper/Header.php'); ?>
 <title>Assign Training</title>
-<link rel="stylesheet" href="./design/bootstrap.css">
-<style type="text/css">
-    body {
-        font: 14px sans-serif;
-        text-align: center;
-        background-image: url("wrapper/Background.jpeg");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 75%;
-    }
-
-    .page-header {
-        background-color: white;
-        margin-left: -10%;
-        width: 700px;
-        margin-top: -30px;
-        display: block;
-        overflow: auto;
-        height: 600px;
-    }
-</style>
+</head>
+<body>
+<?php include('wrapper/Logo.php'); ?>
 <div class="page-header">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?>
         </b> please select users to assign<span style="color:red;"></h1>
     <h1><?php echo htmlspecialchars(getTrainingName($_GET['training_id'], $link)); ?></span>
         Training to:</h1>
-    <br><br>
+</div>    <br><br>
     <div>
         <form action="./php_scripts/assignTraining.php" method="post">
             <table align="center">
@@ -116,6 +90,7 @@ function getTrainingName($training_id, $link)
                 <input type="submit" class="btn btn-primary" value="Assing Trainin To Selected Users">
             </div>
         </form>
+        </div>
         <?php
         include('wrapper/Footer.php');
         ?>

@@ -98,38 +98,12 @@
  }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<?php include('wrapper/Header.php'); ?>
     <title>Training</title>
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">-->
-    <link rel="stylesheet" href="./design/bootstrap.css">
-    <style type="text/css">
- 	
-        body {
-            font: 14px sans-serif;
-            text-align: center;
-        }
-
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 75%;
-        }
-
-        td, th {
-            border: 1px solid #dddddd;
-            text-align: center;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-    </style>
+   
 </head>
 <body>
+<?php include('wrapper/Logo.php'); ?>
 <div class="page-header">
     <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?> Welcome to <?php echo getTrainingName($_GET['training_id'], $link); ?> training.</b></h1>
 </div>
