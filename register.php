@@ -6,7 +6,7 @@
  *
  *
  */
-include('wrapper/Header.php');
+
 session_start();
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "HR") {
     header("location: index.php");
@@ -223,7 +223,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 //calling function to add users info into user_info table
                 if (addUsers_Info($link, $user_id, $username, $user_lastName, $user_firstName, $user_address, $user_city, $user_zip, $user_state, $user_email)) { // added by Andrey
                     echo "Successfully registered user.";
-                    header("location: ./hr.php" );
                 } else {
                     echo "Something went wrong. Please try again later.";
                 }
@@ -240,26 +239,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_close($link);
 }
 ?>
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="./design/bootstrap.css">
-    <style type="text/css">
-        body {
-            font: 14px sans-serif;
-            background-image: url("wrapper/Background.jpeg");
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-        }
 
-        .wrapper {
-            padding: 20px;
-            background-color: white;
-            margin-left: -17%;
-            width: 800px;
-            overflow: scroll;
-            margin-top: -30px;
-            height: 700px;
-    </style>
+
+<?php include('wrapper/Header.php'); ?>
+    <title>Sign Up</title>
+	</head>    
+    <body>
+
 <div class="wrapper">
     <h2>Sign Up</h2>
     <p>Please fill this form to create an account.</p>

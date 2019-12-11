@@ -6,7 +6,7 @@
  *
  *
  */
-include('wrapper/Header.php');
+
 session_start();//session is starting
 //checking if loggedin session is set, and role is Manager, if not rederecting to main page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "HR") {
@@ -14,41 +14,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_
     exit;
 }
 ?>
-    <script type="text/javascript" src="./js_scripts/addMoreLinks.js"></script>
+<?php include('wrapper/Header.php'); ?>
     <title>Handle Users</title>
-    <link rel="stylesheet" href="./design/bootstrap.css">
-    <style type="text/css">
-        body {
-            font: 14px sans-serif;
-            text-align: center;
-            background-image: url("wrapper/Background.jpeg");
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-        }
-
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 90%;
-        }
-
-        td, th {
-            text-align: center;
-            padding: 8px;
-        }
-        .page-header{
-            background-color: white;
-            margin-left: -17%;
-            width: 900px;
-            overflow: scroll;
-            margin-top: -30px;
-            height: 700px;
-        }
-    </style>
+	</head>    
+    <body>
+    <?php include('wrapper/Logo.php'); ?>
 <div class="page-header">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> here you will be able to edit users.</h1>
-    <br><br>
+ </div>   <br><br>
     <div>
         <form action="./php_scripts/handleAccnt.php" method="get">
             <table align="center">
@@ -103,6 +76,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_
         <p>
             <a href="./hr.php" type="reset" class="btn btn-default" value="Back">Back</a>
         </p>
+     </div>
 <?php
 include('wrapper/Footer.php');
 ?>
