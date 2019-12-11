@@ -91,7 +91,7 @@ function getTestName($test_id, $link){//this function is returning test title(ak
                      echo "<td>".($row['completed_dt'] == NULL ? "NO" : "Yes AT: ".$row['completed_dt'])."</td>";
                      echo "<td>".getTestName($row['test_id'], $link)."</td>";
                      if ($row['completed_dt'] == NULL ) {
-                         echo "<td><a href='./startTest.php?test_id=" . htmlspecialchars($row['test_id']) . "&user_id=" . htmlspecialchars($row['assigned_user_id']) . "' class='btn btn-info' title='Click this button to assign test " . htmlspecialchars($row['test_id']) . " to users'>Start Test</a></td>";
+                         echo "<td><a href='./StartTest.php?test_id=" . htmlspecialchars($row['test_id']) . "&user_id=" . htmlspecialchars($row['assigned_user_id']) . "' class='btn btn-info' title='Click this button to assign test " . htmlspecialchars($row['test_id']) . " to users'>Start Test</a></td>";
                      }
                      else {
                         echo "<td></td>";
