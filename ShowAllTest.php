@@ -66,7 +66,7 @@ function getUserName($link, $u_id){
                         while ($row = mysqli_fetch_array($res)) {
                             $web_string = '<tr>';
                             $web_string .= "<td>".htmlspecialchars($row['test_id'])."</td>";
-                            $web_string .= '<td><a href="./showTest.php?id='.htmlspecialchars($row['test_id']).'">'.htmlspecialchars($row['test_title']).'</a></td>';
+                            $web_string .= '<td>'.htmlspecialchars($row['test_title']).'</a></td>';
                             $web_string .= "<td>".htmlspecialchars($row['create_dt'])."</td>";
                             $web_string .= "<td>".getUserName($link, htmlspecialchars($row['created_by']))."</td>";
                             $web_string .= "<td><a href='./assignTestTo.php?test_id=".htmlspecialchars($row['test_id'])."' class='btn btn-info' title='Click this button to assign test ".htmlspecialchars($row['test_id'])." to users'>Assign To</a></td>";
