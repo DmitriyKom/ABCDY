@@ -36,7 +36,7 @@ if (isset($_SESSION["Test_Question"])){
     <br>
     <a href="./ShowAllTest.php" class="row">Show All Tests</a></li>
     <br>
-    <a href="./showAllAssignedTest.php" class="row">Show All Assigned Tests</a>
+    <a href="./ShowAllAssignedTest.php" class="row">Show All Assigned Tests</a>
     <br>
     <a href="./addNewTraining.php" class="row">Create New Training</a>
     <br>
