@@ -67,18 +67,7 @@ function getTrainingName($test_id, $link)
     <h1><?php echo htmlspecialchars(getTrainingName($_GET['test_id'], $link)); ?></span>
         Training to:</h1>
     <br><br>
-    <div>
-        <form action="./php_scripts/assignTest.php" method="post">
-            <table align="center">
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <!--  <th></th>
-                      <th></th>-->
-                </tr>
+        <form action="./php_scripts/assignTest.php" method="post"  ">
                 <?php
                 echo '<input type="hidden" name=" test_id" value="' . $_GET['test_id'] . '">'; // hidden field for sending  test id into form action script
                 $num_of_columns = 5;
@@ -87,35 +76,24 @@ function getTrainingName($test_id, $link)
                 if ($result = mysqli_query($link, $select_query)) {
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_array($result)) {
-                            if (($counter % $num_of_columns) == 0) {
-                                echo "<tr>";
-                            }
-                            
-                            echo "<td>";
-                            echo '<input type="checkbox" name="checked_trainiees[]" value="' . $row['id'] . '" title="' . $row['username'] . " is " . $row['role'] . " whose id is " . $row['id'] . ' and name is ' . $row['firstName'] . " " . $row['lastName'] . '" > ' . $row['username'];
-                            echo "</td>";
-                            
-                            if (($counter % $num_of_columns) == $num_of_columns - 1) {
-                                echo "</tr>";
-                            }
-                            
+                            echo"<br>";
+                            echo '<input style="text-align:left;" type="checkbox" name="checked_trainiees[]" value="' . $row['id'] . '" title="' . $row['username'] . " is " . $row['role'] . " whose id is " . $row['id'] . ' and name is ' . $row['firstName'] . " " . $row['lastName'] . '" /> ' .$row['username'];
+                            echo"<br>";
                             $counter++;
                             
-                        }
-                        if (($counter % $num_of_columns) != $num_of_columns - 1 || ($counter % $num_of_columns) == $num_of_columns - 1) {
-                            echo "</tr>";
                         }
                     }
                 }
                 include_once("./includes/close_conn.inc"); //closing connection to db
                 ?>
-            </table>
             <br>
+    <br>
             <div class="form-group">
-                <a href="./showAllTrainings.php" type="reset" class="btn btn-default" value="Back">Back</a>
+                <a href="./showAllTest.php" type="reset" class="btn btn-default" value="Back">Back</a>
                 <input type="submit" class="btn btn-primary" value="Assign Test To Selected Users">
             </div>
         </form>
+</div>
         <?php
         include('wrapper/Footer.php');
         ?>

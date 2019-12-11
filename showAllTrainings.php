@@ -6,7 +6,7 @@
  *
  *
  */
-
+include('wrapper/Header.php');
 session_start();//session is starting
 	//checking if loggedin session is set, and role is Manager, if not rederecting to main page
 	if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
@@ -24,16 +24,48 @@ session_start();//session is starting
 		return "UNKNOWN";
 	}
 ?>
-<?php include('wrapper/Header.php'); ?>
-<title>Trainings</title>
-</head>
-<body>
-<?php include('wrapper/Logo.php'); ?>
+
+    <script type="text/javascript" src="./js_scripts/addMoreLinks.js"></script>
+    <title>Trainings</title>
+    <link rel="stylesheet" href="./design/bootstrap.css">
+    <style type="text/css">
+        body {
+            font: 14px sans-serif;
+            text-align: center;
+            background-image: url("wrapper/Background.jpeg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 95%;
+        }
+
+        td, th {
+            text-align: center;
+            padding: 8px;
+        }
+        
+        .page-header{
+            background-color: white;
+            margin-left: -10%;
+            width: 600px;
+            text-decoration: none;
+            height: 650px;
+            display: block;
+            overflow: auto;
+        }
+        
+    </style>
 <div class="page-header">
-    <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>, all trainings of system:</h1>
- </div>   <br><br>
+    <h1>Available trainings for <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></h1>
+    <br><br>
     <div>
-        <form action="" method="get">
+        <form action="./php_scripts/NONE.php" method="get">
             <table align="center">
                 <tr>
                     <th>Training ID</th>
@@ -80,7 +112,7 @@ session_start();//session is starting
             <a href="./manager.php" type="reset" class="btn btn-default" value="Back">Back</a>
         </p>
 	</div>
-<div>
+</div>
 <?php
 include('wrapper/Footer.php');
 ?>

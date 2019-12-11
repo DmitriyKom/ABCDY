@@ -323,11 +323,8 @@ $question = null;
                 ?>
             <div class="outbox">
                 <input type="Submit" name="Add" class="btn btn-default" value="Add Question">
-                <input type="Submit" class="btn btn-default" name = "Reset" value="Reset" style="color: red;">
                 <input  type="Submit" name = "Submit"class="btn btn-default" >
                 <a href="./manager.php" type="reset" class="btn btn-default" value="Back">Back</a>
-               <?php  print_r($_POST);
-               print_r( $_SESSION['total_count']); ?>
               
             </div>
             
