@@ -113,7 +113,6 @@ $user_id = -1;
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="register_For_Testing_ONLY.php">Sign up For Testing ONLY now</a>.</p>
         </form>
     </div>
 <?php

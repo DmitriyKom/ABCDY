@@ -91,16 +91,15 @@ if ($_GET) {
 <?php include('wrapper/Logo.php'); ?>
 <div class="page-header">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> here you able to See Info About Training.</h1>
-</div>
+
     <br><br>
-    <div>
+
         <?php echo $write_to_page; ?>
 <br><br>
         <p>
             <a href="./showAllTrainings.php" type="reset" class="btn btn-default" value="Back">Back</a>
             <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
         </p>
-        
-	</div>
+</div>
 </body>
 </html>

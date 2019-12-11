@@ -40,7 +40,6 @@ function getTrainingName($test_id, $link)
         background-image: url("wrapper/Background.jpeg");
         background-repeat: no-repeat;
         background-position: center;
-        background-repeat: no-repeat;
         background-size: cover;
     }
 
@@ -50,17 +49,9 @@ function getTrainingName($test_id, $link)
         width: 75%;
     }
 
-    .page-header {
-        background-color: white;
-        margin-left: -10%;
-        width: 700px;
-        margin-top: -30px;
-        display: block;
-        overflow: auto;
-        height: 600px;
-        display: block;
-    }
+
 </style>
+<?php include('wrapper/Logo.php'); ?>
 <div class="page-header">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?>
         </b> please select users to assign<span style="color:red;"></h1>

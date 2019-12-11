@@ -26,7 +26,7 @@ if (isset($_SESSION["Test_Question"])){
     <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?>.
            <br>
         </b> Welcome to the Manager Portal.</h1>
-</div> 
+
     <br>
     <br>
     <br>
@@ -45,7 +45,7 @@ if (isset($_SESSION["Test_Question"])){
     <p>
         <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
     </p>
-
+</div>
 <?php
 include('wrapper/Footer.php');
 ?>
