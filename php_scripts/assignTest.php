@@ -32,6 +32,6 @@ foreach($_POST['checked_trainiees'] as $trainee_id ){
 include_once "./../includes/close_conn.inc";//closing connection to db
 
 
-header("location: ./../showAllAssignedTest.php");	// redirecting to show ALL Assigned Trainings page
+header("location: ./../ShowAllAssignedTest.php");	// redirecting to show ALL Assigned Trainings page
 
 ?>
