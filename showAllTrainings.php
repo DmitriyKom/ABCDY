@@ -27,11 +27,11 @@ session_start();//session is starting
 <?php include('wrapper/Header.php'); ?>
 <title>Trainings</title>
 </head>
-<body>
+
 <?php include('wrapper/Logo.php'); ?>
 <div class="page-header">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>, all trainings of system:</h1>
- </div>   <br><br>
+  <br><br>
     <div>
         <form action="" method="get">
             <table align="center">

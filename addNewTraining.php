@@ -276,7 +276,7 @@
 <div class="page-header">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>, please Fill all fields for Adding New Training.
     </h1>
- </div>   <br><br>
+  <br><br>
 			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
             <table align="center">
                 <tr>

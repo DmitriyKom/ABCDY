@@ -40,19 +40,10 @@ function getTrainingName($training_id, $link)
         </b> please select users to assign<span style="color:red;"></h1>
     <h1><?php echo htmlspecialchars(getTrainingName($_GET['training_id'], $link)); ?></span>
         Training to:</h1>
-</div>    <br><br>
+  <br><br>
     <div>
         <form action="./php_scripts/assignTraining.php" method="post">
-            <table align="center">
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <!--  <th></th>
-                      <th></th>-->
-                </tr>
+             
                 <?php
                 echo '<input type="hidden" name="training_id" value="' . $_GET['training_id'] . '">'; // hidden field for sending training id into form action script
                 $num_of_columns = 5;
@@ -61,29 +52,20 @@ function getTrainingName($training_id, $link)
                 if ($result = mysqli_query($link, $select_query)) {
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_array($result)) {
-                            if (($counter % $num_of_columns) == 0) {
-                                echo "<tr>";
-                            }
-                            
-                            echo "<td>";
+
+
                             echo '<input type="checkbox" name="checked_trainiees[]" value="' . $row['id'] . '" title="' . $row['username'] . " is " . $row['role'] . " whose id is " . $row['id'] . ' and name is ' . $row['firstName'] . " " . $row['lastName'] . '" > ' . $row['username'];
-                            echo "</td>";
-                            
-                            if (($counter % $num_of_columns) == $num_of_columns - 1) {
-                                echo "</tr>";
-                            }
-                            
+                            echo"<br>";
+   
                             $counter++;
-                            
+                            echo"<br>";
                         }
-                        if (($counter % $num_of_columns) != $num_of_columns - 1 || ($counter % $num_of_columns) == $num_of_columns - 1) {
-                            echo "</tr>";
-                        }
+
                     }
                 }
                 include_once("./includes/close_conn.inc"); //closing connection to db
                 ?>
-            </table>
+
             <br>
             <div class="form-group">
                 <a href="./showAllTrainings.php" type="reset" class="btn btn-default" value="Back">Back</a>

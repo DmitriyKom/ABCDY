@@ -23,20 +23,12 @@ function getUserName($link, $u_id){
     return "UNKNOWN";
 }
 ?>
-
+<?php include('wrapper/Logo.php'); ?>
 <script type="text/javascript" src="./js_scripts/addMoreLinks.js"></script>
 <title>Trainings</title>
 <link rel="stylesheet" href="./design/bootstrap.css">
 <style type="text/css">
-    body {
-        font: 14px sans-serif;
-        text-align: center;
-        background-image: url("wrapper/Background.jpeg");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
+ 
     
     table {
         font-family: arial, sans-serif;
@@ -49,15 +41,6 @@ function getUserName($link, $u_id){
         padding: 8px;
     }
     
-    .page-header{
-        background-color: white;
-        margin-left: -10%;
-        width: 600px;
-        text-decoration: none;
-        height: 650px;
-        display: block;
-        overflow: auto;
-    }
 
 </style>
 <div class="page-header">

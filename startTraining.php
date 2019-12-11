@@ -106,7 +106,7 @@
 <?php include('wrapper/Logo.php'); ?>
 <div class="page-header">
     <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?> Welcome to <?php echo getTrainingName($_GET['training_id'], $link); ?> training.</b></h1>
-</div>
+
 
 
     <br><br>
@@ -117,5 +117,6 @@
 	 <a href="./welcome.php" class="btn btn-info">Back</a>
     <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
 </p>
+</div>
 </body>
 </html>

@@ -64,15 +64,8 @@ function getUserName($user_id, $link){
         padding: 8px;
     }
     
-    .page-header{
-        background-color: white;
-        margin-left: -13%;
-        width: 700px;
-        text-decoration: none;
-        overflow: auto;
-        height: 650px;
-    }
 </style>
+<?php include('wrapper/Logo.php'); ?>
 <div class="page-header">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> here you will be able to see all assigned tests.</h1>
     <br><br>

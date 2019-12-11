@@ -42,18 +42,11 @@ $test_title_value= mysqli_query($link, $test_title);
             background-size: cover;
         }
         
-        .page-header{
-            background-color: white;
-            margin-left: -17%;
-            width: 60%;
-            margin-top: -30px;
-            display:block;
-            overflow: scroll;
-            height: 800px;
-            display:block;
-        }
+     
     </style>
+<?php include('./wrapper/Logo.php'); ?>
     <div class="page-header">
+        
         <?php while($test = mysqli_fetch_assoc($test_title_value)) { ?>
             <h1>Test, <b><?php echo $test['test_title'], $test_id ?></b></h1>
             <br><br>

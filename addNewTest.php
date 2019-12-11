@@ -40,8 +40,7 @@ function add_row()
 function submit( )
 {
     $count = $_SESSION['total_count'];
-   print_r($_SESSION['total_count']);
-   print $count;
+
     define('DB_SERVER', 'localhost');
     define('DB_USERNAME', 'root');
     define('DB_PASSWORD', '');
@@ -119,6 +118,7 @@ function submit( )
             }
         }
     }
+    header("Location: manager.php");
 }
  if(!isset($_SESSION["Test_Question"])){
         $testQuestion =1;
@@ -137,6 +137,7 @@ $question = null;
 
 
 ?>
+<?php include('wrapper/Logo.php'); ?>
     <script type="text/javascript" src="./js_scripts/addMoreLinks.js"></script>
     <title>Add New Training</title>
     <link rel="stylesheet" href="./design/bootstrap.css">
@@ -190,8 +191,7 @@ $question = null;
             width: 75%;
         }
         .wrapper{
-            background-color: white;
-            margin-left: -17%;
+
             width: 60%;
             margin-top: -30px;
             display:block;
@@ -199,8 +199,12 @@ $question = null;
             height: 650px;
             display:block;
         }
+        form{
+            margin-left: 20px;
+            margin-right: 20px;
+        }
     </style>
-<div class = "wrapper">
+<div class = "page-header">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>
     </h1>
 

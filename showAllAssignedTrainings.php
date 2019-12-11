@@ -52,8 +52,7 @@
 	<div class="page-header">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>, this is all assigned and completed trainings on system:</h1>
     <br><br>
-</div>    
-<div>
+
         <form action="" method="get" > 
             <table align="center">
                 <tr>
@@ -91,7 +90,7 @@
         <p>
             <a href="./manager.php" type="reset" class="btn btn-default" value="Back">Back</a>
         </p>
-
+    </div>
 
 <?php
 	include('wrapper/Footer.php');
