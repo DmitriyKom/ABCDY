@@ -8,7 +8,7 @@
  *
  */
 
-
+include('wrapper/Header.php');
 session_start();//session is starting
 //checking if loggedin session is set, and role is Manager, if not rederecting to main page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "HR") {
@@ -77,28 +77,54 @@ if ($_GET) {
     include_once("./includes/close_conn.inc");
 }
 ?>
-<?php include('wrapper/Header.php'); ?>
     <title>Edit User Account</title>
-   
-</head>
-<body>
-<?php include('wrapper/Logo.php'); ?>
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">-->
+    <link rel="stylesheet" href="./design/bootstrap.css">
+    <style type="text/css">
+        body {
+            font: 14px sans-serif;
+            text-align: center;
+            background-image: url("wrapper/Background.jpeg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 75%;
+        }
+        td, th {
+            text-align: center;
+            padding: 8px;
+        }
+        
+        .page-header{
+            background-color: white;
+            margin-left: -10%;
+            width: 40%;
+            overflow: scroll;
+            margin-top: -30px;
+            height: 800px;
+        }
+    </style>
 <div class="page-header">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> please make needed changes.</h1>
-</div>    <br><br>
+    <br><br>
     <div>
-        <form action="./php_scripts/editUsersInfoInDB.php" method="post">
+        <form action="./php_scripts/editAccount.php" method="get">
 
             <table align="center">
                 <tr>
                     <th>Field Name</th>
                     <th>Current Value</th>
                     <th>New Value</th>
+                    <th>Make Changes</th>
                 </tr>
                 <tr>
                     <th>id</th>
                     <td><?php echo $u_id; ?></td>
-                    <td><input type="hidden" name="editing_user_id" value="<?php echo $u_id; ?>"></td>
                 </tr>
                 <tr>
                     <th>username</th>
@@ -116,7 +142,12 @@ if ($_GET) {
                             </select>
                         </div>
                     </td>
-                    
+                    <td>
+                        <div class="form-group">
+                            <input type="button" name="" class="form-control" value="Ok">
+                        </div>
+
+                    </td>
                 </tr>
                 <tr>
                     <th>First Name</th>
@@ -128,7 +159,12 @@ if ($_GET) {
                             <span class="help-block"><?php echo $user_firstName_err; ?></span>
                         </div>
                     </td>
-                
+                    <td>
+                        <div class="form-group">
+                            <input type="button" name="" class="form-control" value="Ok">
+                        </div>
+
+                    </td>
                 </tr>
                 <tr>
                     <th>Last Name</th>
@@ -139,7 +175,12 @@ if ($_GET) {
                             <span class="help-block"><?php echo $user_lastName_err; ?></span>
                         </div>
                     </td>
-               
+                    <td>
+                        <div class="form-group">
+                            <input type="button" name="" class="form-control" value="Ok">
+                        </div>
+
+                    </td>
                 </tr>
                 <tr>
                     <th>Address</th>
@@ -150,7 +191,12 @@ if ($_GET) {
                             <span class="help-block"><?php echo $user_address_err; ?></span>
                         </div>
                     </td>
-                   
+                    <td>
+                        <div class="form-group">
+                            <input type="button" name="" class="form-control" value="Ok">
+                        </div>
+
+                    </td>
                 </tr>
                 <tr>
                     <th>City</th>
@@ -161,7 +207,12 @@ if ($_GET) {
                             <span class="help-block"><?php echo $user_city_err; ?></span>
                         </div>
                     </td>
-                   
+                    <td>
+                        <div class="form-group">
+                            <input type="button" name="" class="form-control" value="Ok">
+                        </div>
+
+                    </td>
                 </tr>
                 <tr>
                     <th>State</th>
@@ -172,7 +223,11 @@ if ($_GET) {
                             <span class="help-block"><?php echo $user_state_err; ?></span>
                         </div>
                     </td>
-                    
+                    <td>
+                        <div class="form-group">
+                            <input type="button" name="" class="form-control" value="Ok">
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <th>Zip</th>
@@ -183,7 +238,11 @@ if ($_GET) {
                             <span class="help-block"><?php echo $user_zip_err; ?></span>
                         </div>
                     </td>
-                  
+                    <td>
+                        <div class="form-group">
+                            <input type="button" name="" class="form-control" value="Ok">
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <th>Email</th>
@@ -194,17 +253,17 @@ if ($_GET) {
                             <span class="help-block"><?php echo $user_email_err; ?></span>
                         </div>
                     </td>
-              
+                    <td>
+                        <div class="form-group">
+                            <input type="button" name="" class="form-control" value="Ok">
+                        </div>
+                    </td>
                 </tr>
             </table>
-            <div class="form-group">
-                <input type="submit" name="" class="btn btn-warning" value="Make Changes">
-            </div>
         </form>
         <p>
             <a href="./showAllUsers.php" type="reset" class="btn btn-default" value="Back">Back</a>
-            <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
         </p>
-     </div>
-</body>
-</html>
+<?php
+include('wrapper/Footer.php');
+?>

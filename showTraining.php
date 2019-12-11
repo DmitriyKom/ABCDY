@@ -6,7 +6,7 @@
  *
  */
 
-//include('wrapper/Header.php');
+include('wrapper/Header.php');
 session_start();//session is starting
 //checking if loggedin session is set, and role is Manager, if not rederecting to main page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
@@ -83,12 +83,43 @@ if ($_GET) {
     include_once("./includes/close_conn.inc");
 }
 ?>
-<?php include('wrapper/Header.php'); ?>
+
     <title>Training Description</title>
-   
+    <link rel="stylesheet" href="./design/bootstrap.css">
+    <style type="text/css">
+        body {
+            font: 14px sans-serif;
+            text-align: center;
+            background-image: url("wrapper/Background.jpeg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 75%;
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+        
+        .page-header{
+            background-color: white;
+            margin-left: -17%;
+            width: 1000px;
+            margin-top: -30px;
+            display:block;
+            overflow: scroll;
+            height: 600px;
+            display:block;
+        }
+    </style>
 </head>
 <body>
-<?php include('wrapper/Logo.php'); ?>
 <div class="page-header">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> here you able to See Info About Training.</h1>
 </div>
@@ -101,6 +132,7 @@ if ($_GET) {
             <a href="./php_scripts/sign_out.php" class="btn btn-danger">Sign Out of Your Account</a>
         </p>
         
-	</div>
-</body>
-</html>
+   </div>
+<?php
+include('wrapper/Footer.php');
+?>

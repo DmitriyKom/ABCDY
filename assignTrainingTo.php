@@ -5,6 +5,7 @@
  *
  *
  */
+include('wrapper/Header.php');
 session_start();//session is starting
 //checking if loggedin session is set, and role is Manager, if not rederecting to main page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
@@ -30,29 +31,45 @@ function getTrainingName($training_id, $link)
 
 
 ?>
-<?php include('wrapper/Header.php'); ?>
+<script type="text/javascript" src="./js_scripts/addMoreLinks.js"></script>
 <title>Assign Training</title>
-</head>
-<body>
-<?php include('wrapper/Logo.php'); ?>
+<link rel="stylesheet" href="./design/bootstrap.css">
+<style type="text/css">
+    body {
+        font: 14px sans-serif;
+        text-align: center;
+        background-image: url("wrapper/Background.jpeg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 75%;
+    }
+
+    .page-header {
+        background-color: white;
+        margin-left: -10%;
+        width: 700px;
+        margin-top: -30px;
+        display: block;
+        overflow: auto;
+        height: 600px;
+    }
+</style>
 <div class="page-header">
     <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?>
         </b> please select users to assign<span style="color:red;"></h1>
     <h1><?php echo htmlspecialchars(getTrainingName($_GET['training_id'], $link)); ?></span>
         Training to:</h1>
-</div>    <br><br>
+    <br><br>
     <div>
         <form action="./php_scripts/assignTraining.php" method="post">
-            <table align="center">
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <!--  <th></th>
-                      <th></th>-->
-                </tr>
+          
                 <?php
                 echo '<input type="hidden" name="training_id" value="' . $_GET['training_id'] . '">'; // hidden field for sending training id into form action script
                 $num_of_columns = 5;
@@ -61,36 +78,24 @@ function getTrainingName($training_id, $link)
                 if ($result = mysqli_query($link, $select_query)) {
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_array($result)) {
-                            if (($counter % $num_of_columns) == 0) {
-                                echo "<tr>";
-                            }
                             
-                            echo "<td>";
+                            echo "<br>";
                             echo '<input type="checkbox" name="checked_trainiees[]" value="' . $row['id'] . '" title="' . $row['username'] . " is " . $row['role'] . " whose id is " . $row['id'] . ' and name is ' . $row['firstName'] . " " . $row['lastName'] . '" > ' . $row['username'];
-                            echo "</td>";
-                            
-                            if (($counter % $num_of_columns) == $num_of_columns - 1) {
-                                echo "</tr>";
-                            }
-                            
+                            echo "<br>";
+
                             $counter++;
-                            
                         }
-                        if (($counter % $num_of_columns) != $num_of_columns - 1 || ($counter % $num_of_columns) == $num_of_columns - 1) {
-                            echo "</tr>";
-                        }
+
                     }
                 }
                 include_once("./includes/close_conn.inc"); //closing connection to db
                 ?>
-            </table>
             <br>
             <div class="form-group">
                 <a href="./showAllTrainings.php" type="reset" class="btn btn-default" value="Back">Back</a>
-                <input type="submit" class="btn btn-primary" value="Assing Trainin To Selected Users">
+                <input type="submit" class="btn btn-primary" value="Assing Training To Selected Users">
             </div>
         </form>
-        </div>
         <?php
         include('wrapper/Footer.php');
         ?>

@@ -5,7 +5,7 @@
  *
  *
  */
-//
+include('wrapper/Header.php');
 	session_start();//session is starting
 	//checking if loggedin session is set, and role is Manager, if not rederecting to main page
 	if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Manager") {
@@ -37,24 +37,47 @@
       }
 		return $answr;
 	}
-	
-	
 ?>
-
-
-<?php include('wrapper/Header.php'); ?>
-
-    
+    <script type="text/javascript" src="./js_scripts/addMoreLinks.js"></script>
     <title>Trainings</title>
- </head>
- <body>   
-<?php include('wrapper/Logo.php'); ?>
-	<div class="page-header">
-    <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>, this is all assigned and completed trainings on system:</h1>
+
+    <link rel="stylesheet" href="./design/bootstrap.css">
+    <style type="text/css">
+        body {
+            font: 14px sans-serif;
+            text-align: center;
+            background-image: url("wrapper/Background.jpeg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 95%;
+        }
+
+        td, th {
+            text-align: center;
+            padding: 8px;
+        }
+        
+        .page-header{
+                background-color: white;
+                margin-left: -13%;
+                width: 700px;
+                text-decoration: none;
+                overflow: auto;
+                height: 650px;
+            }
+    </style>
+<div class="page-header">
+    <h1><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b> here you will be able to see all assigned trainings.</h1>
     <br><br>
-</div>    
-<div>
-        <form action="" method="get" > 
+    <div>
+        <form action="./php_scripts/NONE.php" method="get">
             <table align="center">
                 <tr>
                     <th>Training ID</th>
@@ -91,10 +114,10 @@
         <p>
             <a href="./manager.php" type="reset" class="btn btn-default" value="Back">Back</a>
         </p>
-
-
+	</div>
+</div>
 <?php
-	include('wrapper/Footer.php');
+include('wrapper/Footer.php');
 ?>
 
 
