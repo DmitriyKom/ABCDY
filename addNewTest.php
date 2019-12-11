@@ -39,6 +39,7 @@ function add_row()
 }
 function submit( )
 {
+    print_r($_POST);
     $count = $_SESSION['total_count'];
 
     define('DB_SERVER', 'localhost');
@@ -73,8 +74,9 @@ function submit( )
             $insert_test_query = "INSERT INTO test_answer (question_id , answer, correct ) values
                     (". $question_id  .",'".$_POST['ans_'.$x]."', b'1' )";
             if (mysqli_query($link, $insert_test_query)) {
-                //echo "test added successfully";
+                echo $insert_test_query;
                  mysqli_insert_id($link);
+                 
             } else {
                 echo "ERROR: Could not able to execute sql. "
                     . mysqli_error($link);
@@ -83,9 +85,9 @@ function submit( )
         }
         if(isset($_POST['wrong1_'.$x] )){
             $insert_test_query = "INSERT INTO test_answer (question_id , answer, correct ) values
-                    (". $question_id  .",'".$_POST['ans_'.$x]."', b'0' )";
+                    (". $question_id  .",'".$_POST['wrong1_'.$x]."', b'0' )";
             if (mysqli_query($link, $insert_test_query)) {
-                //echo "test added successfully";
+                echo $insert_test_query;
                 mysqli_insert_id($link);
             } else {
                 echo "ERROR: Could not able to execute sql. "
@@ -95,7 +97,7 @@ function submit( )
         }
         if(isset($_POST['wrong2_'.$x] )){
             $insert_test_query = "INSERT INTO test_answer (question_id , answer, correct ) values
-                    (". $question_id  .",'".$_POST['ans_'.$x]."',b'0' )";
+                    (". $question_id  .",'".$_POST['wrong2_'.$x]."',b'0' )";
             if (mysqli_query($link, $insert_test_query)) {
                 //echo "test added successfully";
                 mysqli_insert_id($link);
@@ -107,9 +109,9 @@ function submit( )
         }
         if(isset($_POST['wrong3_'.$x] ) ){
             $insert_test_query = "INSERT INTO test_answer (question_id , answer, correct ) values
-                    (". $question_id  .",'".$_POST['ans_'.$x]."', b'0')";
+                    (". $question_id  .",'".$_POST['wrong3_'.$x]."', b'0')";
             if (mysqli_query($link, $insert_test_query)) {
-                //echo "test added successfully";
+                echo $insert_test_query;
                  mysqli_insert_id($link);
             } else {
                 echo "ERROR: Could not able to execute sql. "
@@ -118,7 +120,7 @@ function submit( )
             }
         }
     }
-    header("Location: manager.php");
+   // header("Location: manager.php");
 }
  if(!isset($_SESSION["Test_Question"])){
         $testQuestion =1;
